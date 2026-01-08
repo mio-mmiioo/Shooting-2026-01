@@ -24,10 +24,9 @@ Player::Player(const VECTOR3& position, float ang, int hp)
 	assert(hModel_ > 0);
 	hitModel_ = MV1LoadModel("data/model/player_c.mv1");
 	assert(hitModel_ > 0);
-
+	
+	transform_.MakeLocalMatrix();
 	MV1SetupCollInfo(hModel_);
-	MV1SetMatrix(hModel_, transform_.GetLocalMatrix());
-	MV1RefreshCollInfo(hModel_);
 
 	rotateSpeed_ = PLAYER::ROTATE_SPEED;
 	moveSpeed_ = PLAYER::MOVE_SPEED;
@@ -43,6 +42,7 @@ void Player::Update()
 	DevelopmentInput();
 
 	// à íuèÓïÒÇÃçXêV
+	transform_.MakeLocalMatrix();
 	MV1SetMatrix(hModel_, transform_.GetLocalMatrix());
 	MV1RefreshCollInfo(hModel_);
 
