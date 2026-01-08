@@ -19,9 +19,9 @@ using InputActionMap_t = std::map<std::string, std::vector<InputInfo>>;
 
 namespace Input
 {
-    std::map<std::string, bool> currentInput_;  // 現在の状態
-    std::map<std::string, bool> previousInput_; // 前回の状態
-    InputActionMap_t inputActionMap_;           // 各機種からの入力処理のマップ
+    std::map<std::string, bool> currentInput;  // 現在の状態
+    std::map<std::string, bool> previousInput; // 前回の状態
+    InputActionMap_t inputActionMap;           // 各機種からの入力処理のマップ
 
     const int KEY_MAX = 256;    // キー入力の最大数
     char keyState[KEY_MAX];     // keyboard入力
@@ -31,7 +31,15 @@ namespace Input
 
 void Input::InitActionMap()
 {
-    inputActionMap_["next"] = { {InputType::keyboard,KEY_INPUT_RETURN}, {InputType::gamepad,PAD_INPUT_Z} }; // 右ショルダー 
+    inputActionMap["next"] = { {InputType::keyboard,KEY_INPUT_RETURN}, {InputType::gamepad,PAD_INPUT_Z} }; // 右ショルダー 
+
+    // 開発時のみ使用
+    inputActionMap["rotateRight"] = { {InputType::keyboard,KEY_INPUT_D} }; // 右回転
+    inputActionMap["rotateLeft"] = { {InputType::keyboard,KEY_INPUT_A} }; // 左回転
+    inputActionMap["moveFront"] = { {InputType::keyboard, KEY_INPUT_W} }; // 前進
+    inputActionMap["moveBack"] = { {InputType::keyboard, KEY_INPUT_S} }; // 後退
+
+    inputActionMap["changeCamera"] = { {InputType::keyboard, KEY_INPUT_C} }; // カメラ切り替え
 }
 
 void Input::StateUpdate()
@@ -39,8 +47,9 @@ void Input::StateUpdate()
     GetHitKeyStateAll(keyState);
     padState = GetJoypadInputState(DX_INPUT_PAD1);
     mouseState = GetMouseInput();
+    previousInput = currentInput;
 
-    for (const auto& mapInfo : inputActionMap_)
+    for (const auto& mapInfo : inputActionMap)
     {
         bool isDown = false;
         for (const auto& inputInfo : mapInfo.second)
@@ -53,19 +62,19 @@ void Input::StateUpdate()
                 break;
             }
         }
-        currentInput_[mapInfo.first] = isDown;
+        currentInput[mapInfo.first] = isDown;
     }
-    previousInput_ = currentInput_;
+
 }
 
 bool Input::IsKeyDown(const std::string& action)
 {
-    auto it = currentInput_.find(action);
-    if (it == currentInput_.end()) // 見つからないならfalse
+    auto it = currentInput.find(action);
+    if (it == currentInput.end()) // 見つからないならfalse
     {
         return false;
     }
-    auto prevIt = previousInput_.find(action);
+    auto prevIt = previousInput.find(action);
     // 今は押してて、前回は押してない → 押した瞬間
     if (it->second == true && prevIt->second == false)
     {
@@ -76,8 +85,8 @@ bool Input::IsKeyDown(const std::string& action)
 
 bool Input::IsKeyKeepDown(const std::string& action)
 {
-    auto it = currentInput_.find(action);
-    if (it == currentInput_.end())
+    auto it = currentInput.find(action);
+    if (it == currentInput.end())
     {
         return false;
     }
@@ -86,12 +95,12 @@ bool Input::IsKeyKeepDown(const std::string& action)
 
 bool Input::IsKeyUp(const std::string& action)
 {
-    auto it = currentInput_.find(action);
-    if (it == currentInput_.end())
+    auto it = currentInput.find(action);
+    if (it == currentInput.end())
     {
         return false;
     }
-    auto prevIt = previousInput_.find(action);
+    auto prevIt = previousInput.find(action);
     // 現在は離してて、前回は押している → 離された瞬間
     if (it->second == false && prevIt->second == true)
     {

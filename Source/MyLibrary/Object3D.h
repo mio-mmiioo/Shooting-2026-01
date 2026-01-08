@@ -42,7 +42,7 @@ public:
 	void SetPosition(VECTOR3 newPosition) { transform_.position_ = newPosition; }
 	void SetMove(VECTOR3 toPosition); // 現在地からtoPositionの方へ移動する
 
-private:
+protected:
 	int hModel_; // 本当に描画するモデル
 	int hitModel_; // 当たり判定用のモデル
 	bool isDraw_; // 描画するかどうか true → 描画する

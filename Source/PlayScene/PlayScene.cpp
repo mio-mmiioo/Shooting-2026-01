@@ -2,8 +2,13 @@
 #include "../MyLibrary/Input.h"
 #include "../MyLibrary/Color.h"
 
+#include "Camera.h"
+#include "Player.h"
+
 PlayScene::PlayScene()
 {
+	new Player(VECTOR3(0, 0, 0), 0, 10);
+	new Camera();
 }
 
 PlayScene::~PlayScene()
