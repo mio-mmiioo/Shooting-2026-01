@@ -68,6 +68,12 @@
     <ClCompile Include="Source\PlayScene\Camera.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayScene\Stage\Stage.cpp">
+      <Filter>PlayScene\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayScene\Stage\WayInfo.cpp">
+      <Filter>PlayScene\Stage</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -153,6 +159,12 @@
     <ClInclude Include="Source\PlayScene\Player.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlayScene\Stage\Stage.h">
+      <Filter>PlayScene\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayScene\Stage\WayInfo.h">
+      <Filter>PlayScene\Stage</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -175,6 +187,9 @@
     </Filter>
     <Filter Include="MyLibrary">
       <UniqueIdentifier>{d133a9e3-eda6-41d0-a5af-d0259355f2fd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\Stage">
+      <UniqueIdentifier>{9a266165-b587-4b36-9e2f-712bbafd3ee6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

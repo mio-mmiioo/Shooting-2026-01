@@ -4,11 +4,13 @@
 
 #include "Camera.h"
 #include "Player.h"
+#include "Stage/WayInfo.h"
 
 PlayScene::PlayScene()
 {
 	new Player(VECTOR3(0, 0, 0), 0, 10);
 	new Camera();
+	WayInfo::Init();
 }
 
 PlayScene::~PlayScene()
@@ -24,5 +26,6 @@ void PlayScene::Update()
 
 void PlayScene::Draw()
 {
+	WayInfo::WayDraw();
 	DrawString(0, 0, "PLAY SCENE", Color::TEXT);
 }
