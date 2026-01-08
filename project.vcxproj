@@ -153,7 +153,12 @@
     <ClInclude Include="Library\SceneManager.h" />
     <ClInclude Include="Library\Time.h" />
     <ClInclude Include="Source\BootScene.h" />
+    <ClInclude Include="Source\MyLibrary\Color.h" />
+    <ClInclude Include="Source\MyLibrary\CsvReader.h" />
+    <ClInclude Include="Source\MyLibrary\Input.h" />
+    <ClInclude Include="Source\MyLibrary\Object3D.h" />
     <ClInclude Include="Source\PlayScene\PlayScene.h" />
+    <ClInclude Include="Source\ResultScene\ResultScene.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\SceneFactory.h" />
     <ClInclude Include="Source\TitleScene\TitleScene.h" />
@@ -173,7 +178,11 @@
     <ClCompile Include="Library\SceneManager.cpp" />
     <ClCompile Include="Library\Time.cpp" />
     <ClCompile Include="Source\BootScene.cpp" />
+    <ClCompile Include="Source\MyLibrary\CsvReader.cpp" />
+    <ClCompile Include="Source\MyLibrary\Input.cpp" />
+    <ClCompile Include="Source\MyLibrary\Object3D.cpp" />
     <ClCompile Include="Source\PlayScene\PlayScene.cpp" />
+    <ClCompile Include="Source\ResultScene\ResultScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\TitleScene\TitleScene.cpp" />
   </ItemGroup>

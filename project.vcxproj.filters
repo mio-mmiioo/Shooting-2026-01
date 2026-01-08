@@ -50,6 +50,18 @@
     <ClCompile Include="Source\TitleScene\TitleScene.cpp">
       <Filter>TitleScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\ResultScene\ResultScene.cpp">
+      <Filter>ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyLibrary\Object3D.cpp">
+      <Filter>MyLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyLibrary\Input.cpp">
+      <Filter>MyLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyLibrary\CsvReader.cpp">
+      <Filter>MyLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -114,6 +126,21 @@
     <ClInclude Include="Source\TitleScene\TitleScene.h">
       <Filter>TitleScene</Filter>
     </ClInclude>
+    <ClInclude Include="Source\ResultScene\ResultScene.h">
+      <Filter>ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Object3D.h">
+      <Filter>MyLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Input.h">
+      <Filter>MyLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Color.h">
+      <Filter>MyLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\CsvReader.h">
+      <Filter>MyLibrary</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -130,6 +157,12 @@
     </Filter>
     <Filter Include="PlayScene">
       <UniqueIdentifier>{f92b56d2-108f-4288-a710-ea612653dbed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ResultScene">
+      <UniqueIdentifier>{a604f755-ee27-414e-bf7f-ff82f5bde259}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="MyLibrary">
+      <UniqueIdentifier>{d133a9e3-eda6-41d0-a5af-d0259355f2fd}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

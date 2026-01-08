@@ -1,4 +1,6 @@
 #include "PlayScene.h"
+#include "../MyLibrary/Input.h"
+#include "../MyLibrary/Color.h"
 
 PlayScene::PlayScene()
 {
@@ -10,13 +12,12 @@ PlayScene::~PlayScene()
 
 void PlayScene::Update()
 {
-	if (CheckHitKey(KEY_INPUT_T)) {
-		SceneManager::ChangeScene("TITLE");
+	if (Input::IsKeyDown("next")) {
+		SceneManager::ChangeScene("RESULT");
 	}
 }
 
 void PlayScene::Draw()
 {
-	DrawString(0, 0, "PLAY SCENE", GetColor(255, 255, 255));
-	DrawString(100, 400, "Push [T]Key To Title", GetColor(255, 255, 255));
+	DrawString(0, 0, "PLAY SCENE", Color::TEXT);
 }
