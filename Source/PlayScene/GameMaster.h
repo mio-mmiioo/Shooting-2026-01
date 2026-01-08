@@ -1,5 +1,5 @@
 #pragma once
-
+#include "../MyLibrary/Object3D.h"
 
 namespace GameMaster
 {
@@ -7,4 +7,6 @@ namespace GameMaster
 	void Update();
 	void Draw();
 	void Release();
+
+	bool IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition);
 }

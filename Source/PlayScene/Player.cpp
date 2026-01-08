@@ -1,7 +1,9 @@
 #include "Player.h"
 #include <assert.h>
 #include "../MyLibrary/Input.h"
+#include "../MyLibrary/Color.h"
 #include "Camera.h"
+#include "GameMaster.h"
 
 namespace PLAYER
 {
@@ -19,6 +21,7 @@ namespace PLAYER
 
 Player::Player(const VECTOR3& position, float ang, int hp)
 {
+	objectNumber_ = OBJECT_SORT::OBJ_PLAYER;
 	transform_.position_ = position;
 	hModel_ = MV1LoadModel("data/model/player.mv1");
 	assert(hModel_ > 0);
@@ -28,9 +31,16 @@ Player::Player(const VECTOR3& position, float ang, int hp)
 	transform_.MakeLocalMatrix();
 	MV1SetupCollInfo(hModel_);
 
+	// è∆èÄ(aiming)
+	SetImage(aiming_, "data/image/pointer1.png");
+	SetImage(hitAiming_, "data/image/pointer2.png");
+	SetImage(reload_, "data/image/reload.png");
+
 	rotateSpeed_ = PLAYER::ROTATE_SPEED;
 	moveSpeed_ = PLAYER::MOVE_SPEED;
 	camera_ = FindGameObject<Camera>();
+
+	SetDrawOrder(-100);
 }
 
 Player::~Player()
@@ -39,7 +49,25 @@ Player::~Player()
 
 void Player::Update()
 {
+	GetMousePoint(&mouseX_, &mouseY_);
+
+	// à⁄ìÆèàóù
 	DevelopmentInput();
+
+	// èeíeÇÃìñÇΩÇËîªíË
+	{
+		VECTOR ScreenPosition = { (float)mouseX_, (float)mouseY_, 1.0f };
+		wPointerPosition_ = ConvScreenPosToWorldPos(ScreenPosition);
+		startPosition_ = transform_.position_ + LOOK_HEIGHT;
+		if (GameMaster::IsBulletHit(startPosition_, wPointerPosition_) == true)
+		{
+			isHit_ = true;
+		}
+		else
+		{
+			isHit_ = false;
+		}
+	}
 
 	// à íuèÓïÒÇÃçXêV
 	transform_.MakeLocalMatrix();
@@ -52,8 +80,25 @@ void Player::Update()
 void Player::Draw()
 {
 	Object3D::Draw();
+
+	// å¸Ç¢ÇƒÇÈï˚å¸Çé¶Ç∑Å@Ç±ÇÍÉJÉÅÉâïœçXÇµÇ»Ç≠Ç»Ç¡ÇΩÇÁè¡Ç∑Ç±Ç∆
+	VECTOR3 addPlayerHeight = LOOK_HEIGHT * transform_.GetRotationMatrix();
+	DrawLine3D(transform_.position_ + addPlayerHeight, transform_.position_ + addPlayerHeight + VECTOR3(0, 0, 1) * PLAYER::DIRECTION_LENGTH * transform_.GetRotationMatrix(), Color::WHITE);
+
+	// 2DÇÃï`âÊ
+
+	// è∆èÄÇÃï`âÊ
+	if (isHit_ == true)
+	{
+		DrawGraph(mouseX_ - hitAiming_.halfWidth, mouseY_ - hitAiming_.halfHeight, hitAiming_.hImage, TRUE); // ActorÇ…ìñÇΩÇÈ
+	}
+	else
+	{
+		DrawGraph(mouseX_ - aiming_.halfWidth, mouseY_ - aiming_.halfHeight, aiming_.hImage, TRUE); // ïWèÄ
+	}
 }
 
+// äJî≠éûÇÃÇ›égóp
 void Player::DevelopmentInput()
 {
 	// ì¸óÕâÒì]
@@ -82,4 +127,13 @@ void Player::DevelopmentInput()
 			transform_.position_ -= velocity;
 		}
 	}
+}
+
+void Player::SetImage(image& i, std::string path)
+{
+	i.hImage = LoadGraph(path.c_str());
+	assert(i.hImage > 0);
+	GetGraphSize(i.hImage, &i.halfWidth, &i.halfHeight);
+	i.halfWidth = i.halfWidth / 2;
+	i.halfHeight = i.halfHeight / 2;
 }

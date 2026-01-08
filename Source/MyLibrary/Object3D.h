@@ -1,6 +1,15 @@
 #pragma once
 #include "../../Library/GameObject.h"
 
+enum OBJECT_SORT
+{
+	OBJ_PLAYER,
+	OBJ_CHARA,
+	OBJ_OBJECT,
+	OBJ_OBJECT_D,
+	MAX_OBJ
+};
+
 class Transform
 {
 public:
@@ -49,6 +58,7 @@ public:
 	virtual void Update() override;
 	virtual void Draw() override;
 	Transform GetTransform() { return transform_; } // transformの値を返す
+	int GetObjectNumber() { return objectNumber_; } // オブジェクトの種類の番号を返す
 	void SetParent(Object3D* parent) { parent_ = parent; }
 	bool CollideLine(VECTOR3 pos1, VECTOR3 pos2, VECTOR3* hit = nullptr) const;
 	void SetPosition(VECTOR3 newPosition) { transform_.position_ = newPosition; }
@@ -63,5 +73,6 @@ protected:
 
 	float rotateSpeed_;	// 回転の速度
 	float moveSpeed_;	// 移動速度
-	int hp_;
+	int hp_;			// 体力
+	int objectNumber_;	// オブジェクトの識別番号
 };

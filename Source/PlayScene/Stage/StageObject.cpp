@@ -23,10 +23,12 @@ StageObject::StageObject(const std::string& fileName, const VECTOR3& position, c
 	if (hp > 0)
 	{
 		isDestructible_ = true;
+		objectNumber_ = OBJECT_SORT::OBJ_OBJECT_D;
 	}
 	else
 	{
 		isDestructible_ = false;
+		objectNumber_ = OBJECT_SORT::OBJ_OBJECT;
 	}
 }
 

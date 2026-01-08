@@ -8,15 +8,6 @@ namespace STAGE
 {
 	const float CHECK_ONGROUND_LENGTH = 500.0f;
 	const int DATA_SIZE = 16;
-
-	enum SORT_NUM
-	{
-		PLAYER,
-		CHARA,
-		OBJ,
-		OBJ_D,
-		MAX_OBJ
-	};
 }
 
 Stage::Stage(int number)
@@ -71,13 +62,13 @@ void Stage::ReadMappingData(std::string filename)
 	CsvReader* csv = new CsvReader(folder + filename + ".csv");
 	for (int line = 0; line < csv->GetLines(); line++) {
 		int sortNumber = csv->GetInt(line, 0);
-		if (sortNumber == STAGE::SORT_NUM::PLAYER) {
+		if (sortNumber == OBJECT_SORT::OBJ_PLAYER) {
 			VECTOR pos = VECTOR3(csv->GetFloat(line, 2), csv->GetFloat(line, 3), csv->GetFloat(line, 4));
 			float ang = csv->GetFloat(line, 5);
 			int hp = csv->GetInt(line, 6);
 			new Player(pos, ang, hp);
 		}
-		if (sortNumber == STAGE::SORT_NUM::CHARA) {
+		if (sortNumber == OBJECT_SORT::OBJ_CHARA) {
 			VECTOR pos = VECTOR3(csv->GetFloat(line, 2), csv->GetFloat(line, 3), csv->GetFloat(line, 4));
 			float ang = csv->GetFloat(line, 5);
 			int hp = csv->GetInt(line, 6);
@@ -90,7 +81,7 @@ void Stage::ReadMappingData(std::string filename)
 				break;
 			}
 		}
-		else if (sortNumber == STAGE::SORT_NUM::OBJ) {
+		else if (sortNumber == OBJECT_SORT::OBJ_OBJECT) {
 			VECTOR pos = VECTOR3(csv->GetFloat(line, 2), csv->GetFloat(line, 3), csv->GetFloat(line, 4));
 			VECTOR rot = VECTOR3(csv->GetFloat(line, 5), csv->GetFloat(line, 6), csv->GetFloat(line, 7));
 			VECTOR sca = VECTOR3(csv->GetFloat(line, 8), csv->GetFloat(line, 9), csv->GetFloat(line, 10));
