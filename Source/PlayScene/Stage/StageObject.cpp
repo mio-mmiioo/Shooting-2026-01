@@ -1,5 +1,6 @@
 #include "StageObject.h"
 #include <assert.h>
+#include "../CanShoot.h"
 
 StageObject::StageObject(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp)
 {
@@ -30,6 +31,8 @@ StageObject::StageObject(const std::string& fileName, const VECTOR3& position, c
 		isDestructible_ = false;
 		objectNumber_ = OBJECT_SORT::OBJ_OBJECT;
 	}
+
+	CanShoot::AddCanShootObject(this);
 }
 
 StageObject::~StageObject()
@@ -40,6 +43,7 @@ StageObject::~StageObject()
 	}
 	if (hitModel_ > 0) {
 		MV1DeleteModel(hitModel_);
+
 		hitModel_ = -1;
 	}
 }

@@ -1,7 +1,7 @@
 #include "Object3D.h"
 
 Object3D::Object3D()
-    :hModel_(-1), hitModel_(-1), parent_(nullptr), isDraw_(true)
+    :hModel_(-1), hitModel_(-1), parent_(nullptr), isDraw_(true), hp_(-1), objectNumber_(-1)
 {
 }
 

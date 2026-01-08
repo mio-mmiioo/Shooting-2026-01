@@ -13,7 +13,7 @@ namespace GameMaster
 void GameMaster::Init()
 {
 	WayInfo::Init();
-	new Stage(2); // 建物だけのステージ
+	new Stage(8); // 建物だけのステージ
 
 }
 
@@ -35,18 +35,9 @@ bool GameMaster::IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition)
 {
 	// 敵、破壊可能オブジェクトにあたるならtrueを返す
 	VECTOR3 hit;
-	Object3D obj;
-	if (CanShoot::CheckHitObject(startPosition, endPosition, &hit, &obj) == false)
+	if (CanShoot::CheckHitObject(startPosition, endPosition, &hit) == true)
 	{
-		return false;
+		return true;
 	}
-	else
-	{
-		int checkNum = obj.GetObjectNumber();
-		if (checkNum == OBJECT_SORT::OBJ_OBJECT || checkNum == OBJECT_SORT::OBJ_PLAYER)
-		{
-			return false;
-		}
-	}
-	return true;
+	return false;
 }
