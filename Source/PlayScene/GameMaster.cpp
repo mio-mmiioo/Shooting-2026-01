@@ -3,6 +3,8 @@
 #include "Stage/Stage.h"
 #include "Stage/WayInfo.h"
 
+#include "../MyLibrary/Light.h"
+
 #include "CanShoot.h"
 
 namespace GameMaster
@@ -17,11 +19,12 @@ void GameMaster::Init()
 {
 	WayInfo::Init();
 	new Stage(8); // 建物だけのステージ
-
+	Light::Init();
 }
 
 void GameMaster::Update()
 {
+	Light::Update();
 	player = FindGameObject<Player>();
 
 	if (player->GetIsAttack() == true)

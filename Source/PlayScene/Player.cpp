@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <assert.h>
 #include "../MyLibrary/Input.h"
+#include "../MyLibrary/Light.h"
 #include "../MyLibrary/Color.h"
 #include "Camera.h"
 #include "GameMaster.h"
@@ -90,6 +91,7 @@ void Player::Update()
 	MV1RefreshCollInfo(hModel_);
 
 	camera_->SetPlayerPosition(transform_);
+	Light::SetPosition(transform_.position_);
 }
 
 void Player::Draw()

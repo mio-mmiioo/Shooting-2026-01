@@ -156,6 +156,7 @@
     <ClInclude Include="Source\MyLibrary\Color.h" />
     <ClInclude Include="Source\MyLibrary\CsvReader.h" />
     <ClInclude Include="Source\MyLibrary\Input.h" />
+    <ClInclude Include="Source\MyLibrary\Light.h" />
     <ClInclude Include="Source\MyLibrary\Object3D.h" />
     <ClInclude Include="Source\PlayScene\Camera.h" />
     <ClInclude Include="Source\PlayScene\CanShoot.h" />
@@ -187,6 +188,7 @@
     <ClCompile Include="Source\BootScene.cpp" />
     <ClCompile Include="Source\MyLibrary\CsvReader.cpp" />
     <ClCompile Include="Source\MyLibrary\Input.cpp" />
+    <ClCompile Include="Source\MyLibrary\Light.cpp" />
     <ClCompile Include="Source\MyLibrary\Object3D.cpp" />
     <ClCompile Include="Source\PlayScene\Camera.cpp" />
     <ClCompile Include="Source\PlayScene\CanShoot.cpp" />

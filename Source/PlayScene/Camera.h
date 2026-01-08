@@ -1,8 +1,6 @@
 #pragma once
 #include "../MyLibrary/Object3D.h"
 
-static VECTOR3 LOOK_HEIGHT = { 0.0f, 180.0f, 0.0f }; // ‹“_‚Ì‚‚³
-
 enum CAM_STATE
 {
 	FIRST,	// ˆêlÌ‹“_

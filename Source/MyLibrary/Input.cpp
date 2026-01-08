@@ -32,7 +32,7 @@ namespace Input
 void Input::InitActionMap()
 {
     inputActionMap["next"] = { {InputType::keyboard,KEY_INPUT_RETURN}, {InputType::gamepad,PAD_INPUT_Z} }; // 右ショルダー 
-    inputActionMap["outBullet"] = { {InputType::keyboard, KEY_INPUT_SPACE}, {InputType::mouse, MOUSE_INPUT_RIGHT} };
+    inputActionMap["outBullet"] = { {InputType::keyboard, KEY_INPUT_SPACE}, {InputType::mouse, MOUSE_INPUT_LEFT} };
 
     // 開発時のみ使用
     inputActionMap["rotateRight"] = { {InputType::keyboard,KEY_INPUT_D} }; // 右回転

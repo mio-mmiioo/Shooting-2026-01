@@ -83,6 +83,9 @@
     <ClCompile Include="Source\PlayScene\CanShoot.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MyLibrary\Light.cpp">
+      <Filter>MyLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -182,6 +185,9 @@
     </ClInclude>
     <ClInclude Include="Source\PlayScene\CanShoot.h">
       <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Light.h">
+      <Filter>MyLibrary</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
