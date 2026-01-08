@@ -1,6 +1,7 @@
 #include "Player.h"
 #include <assert.h>
 #include "../MyLibrary/Input.h"
+#include "Camera.h"
 
 namespace PLAYER
 {
@@ -30,6 +31,7 @@ Player::Player(const VECTOR3& position, float ang, int hp)
 
 	rotateSpeed_ = PLAYER::ROTATE_SPEED;
 	moveSpeed_ = PLAYER::MOVE_SPEED;
+	camera_ = FindGameObject<Camera>();
 }
 
 Player::~Player()
@@ -39,6 +41,12 @@ Player::~Player()
 void Player::Update()
 {
 	DevelopmentInput();
+
+	// ˆÊ’uî•ñ‚ÌXV
+	MV1SetMatrix(hModel_, transform_.GetLocalMatrix());
+	MV1RefreshCollInfo(hModel_);
+
+	camera_->SetPlayerPosition(transform_);
 }
 
 void Player::Draw()

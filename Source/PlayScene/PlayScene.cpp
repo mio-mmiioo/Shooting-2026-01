@@ -1,24 +1,25 @@
 #include "PlayScene.h"
 #include "../MyLibrary/Input.h"
 #include "../MyLibrary/Color.h"
+#include "GameMaster.h"
 
 #include "Camera.h"
-#include "Player.h"
-#include "Stage/WayInfo.h"
 
 PlayScene::PlayScene()
 {
-	new Player(VECTOR3(0, 0, 0), 0, 10);
 	new Camera();
-	WayInfo::Init();
+	GameMaster::Init();
 }
 
 PlayScene::~PlayScene()
 {
+	GameMaster::Release();
 }
 
 void PlayScene::Update()
 {
+	GameMaster::Update();
+
 	if (Input::IsKeyDown("next")) {
 		SceneManager::ChangeScene("RESULT");
 	}
@@ -26,6 +27,6 @@ void PlayScene::Update()
 
 void PlayScene::Draw()
 {
-	WayInfo::WayDraw();
+	GameMaster::Draw();
 	DrawString(0, 0, "PLAY SCENE", Color::TEXT);
 }

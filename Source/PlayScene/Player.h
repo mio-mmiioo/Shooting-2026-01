@@ -1,6 +1,8 @@
 #pragma once
 #include "../MyLibrary/Object3D.h"
 
+class Camera;
+
 class Player : public Object3D
 {
 public:
@@ -11,5 +13,7 @@ public:
 
 private:
 	void DevelopmentInput();
+
+	Camera* camera_;
 };
 

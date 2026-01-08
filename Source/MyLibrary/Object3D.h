@@ -18,6 +18,18 @@ public:
 
 	~Transform() {};
 
+	// 位置・回転・拡縮を使用した行列の計算結果を求める
+	const MATRIX& MakeLocalMatrix() {
+		MATRIX ms = MGetScale(scale_);
+		MATRIX mrx = MGetRotX(rotation_.x);
+		MATRIX mry = MGetRotY(rotation_.y);
+		MATRIX mrz = MGetRotZ(rotation_.z);
+		MATRIX mt = MGetTranslate(position_);
+		rotMatrix_ = ms * mrz * mrx * mry;
+		localMatrix_ = rotMatrix_ * mt;
+		return localMatrix_;
+	}
+
 	// 位置・回転・拡縮を使用した行列を返す　※計算をしてない
 	const MATRIX& GetLocalMatrix() const { return localMatrix_; }
 
@@ -51,4 +63,5 @@ protected:
 
 	float rotateSpeed_;	// 回転の速度
 	float moveSpeed_;	// 移動速度
+	int hp_;
 };
