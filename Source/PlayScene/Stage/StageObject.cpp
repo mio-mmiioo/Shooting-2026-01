@@ -47,3 +47,12 @@ StageObject::~StageObject()
 		hitModel_ = -1;
 	}
 }
+
+void StageObject::Update()
+{
+	if (isDestructible_ == true && hp_ <= 0)
+	{
+		DestroyMe();
+		return;
+	}
+}

@@ -7,6 +7,9 @@
 
 namespace GameMaster
 {
+	// ŠJ”­Žž‚Ì‚ÝŽg—p
+	const int ADD_HP = -3;
+
 	Player* player = nullptr;
 }
 
@@ -20,6 +23,11 @@ void GameMaster::Init()
 void GameMaster::Update()
 {
 	player = FindGameObject<Player>();
+
+	if (player->GetIsAttack() == true)
+	{
+		CanShoot::AttackedObject(ADD_HP);
+	}
 }
 
 void GameMaster::Draw()

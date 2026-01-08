@@ -54,3 +54,8 @@ bool CanShoot::CheckHitObject(VECTOR3 pos1, VECTOR3 pos2, VECTOR3* hit)
 	}
 	return found;
 }
+
+void CanShoot::AttackedObject(int num)
+{
+	checkObject->ADD_HP(num);
+}

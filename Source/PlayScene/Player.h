@@ -18,22 +18,25 @@ public:
 	void Update() override;
 	void Draw() override;
 
+	bool GetIsAttack() { return isAttack_; } // プレイヤーが攻撃をしているか true→攻撃している
+
 private:
-	void DevelopmentInput(); // 開発時のみ使用
-	void SetImage(image& i, std::string path); // 画像のセット
+	void DevelopmentInput();					// 開発時のみ使用
+	void SetImage(image& i, std::string path);	// 画像のセット
 
 	Camera* camera_;
 
-	int mouseX_; // マウスのx座標
-	int mouseY_; // マウスのy座標
-	VECTOR3 wPointerPosition_; // スクリーン座標の照準をワールド座標に変換したものを代入する変数
-	VECTOR3 startPosition_; // 銃の軌道の始点
+	int mouseX_;				// マウスのx座標
+	int mouseY_;				// マウスのy座標
+	VECTOR3 wPointerPosition_;	// スクリーン座標の照準をワールド座標に変換したものを代入する変数
+	VECTOR3 startPosition_;		// 銃の軌道の始点
 
-	bool isHit_; // 銃弾が当たるか true→当たる
+	bool isHit_;	// 銃弾が当たるか true→当たる
+	bool isAttack_; // 攻撃（発砲）しているか
 
 	// 照準の画像関連
-	image aiming_; // 照準の画像
-	image hitAiming_; // 照準が何かにあたるときの画像
-	image reload_; // リロードの画像
+	image aiming_;		// 照準の画像
+	image hitAiming_;	// 照準が何かにあたるときの画像
+	image reload_;		// リロードの画像
 };
 

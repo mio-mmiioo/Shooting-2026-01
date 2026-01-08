@@ -40,6 +40,9 @@ Player::Player(const VECTOR3& position, float ang, int hp)
 	moveSpeed_ = PLAYER::MOVE_SPEED;
 	camera_ = FindGameObject<Camera>();
 
+	isHit_ = false;
+	isAttack_ = false;
+
 	SetDrawOrder(-100);
 }
 
@@ -54,7 +57,19 @@ void Player::Update()
 	// ˆÚ“®ˆ—
 	DevelopmentInput();
 
-	// e’e‚Ì“–‚½‚è”»’è
+	// e’e‚Ì”­Ë
+	{
+		if (Input::IsKeyDown("outBullet"))
+		{
+			isAttack_ = true;
+		}
+		else
+		{
+			isAttack_ = false;
+		}
+	}
+
+	// Æ€‚Ì“–‚½‚è”»’è
 	{
 		VECTOR ScreenPosition = { (float)mouseX_, (float)mouseY_, 1.0f };
 		wPointerPosition_ = ConvScreenPosToWorldPos(ScreenPosition);
