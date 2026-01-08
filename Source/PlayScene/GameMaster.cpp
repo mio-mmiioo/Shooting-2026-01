@@ -4,6 +4,7 @@
 #include "Stage/WayInfo.h"
 
 #include "../MyLibrary/Light.h"
+//#include "../MyLibrary/Shadow.h"
 
 #include "CanShoot.h"
 
@@ -20,6 +21,7 @@ void GameMaster::Init()
 	WayInfo::Init();
 	new Stage(8); // 建物だけのステージ
 	Light::Init();
+	//Shadow::Init(); // Stageの後に処理する
 }
 
 void GameMaster::Update()

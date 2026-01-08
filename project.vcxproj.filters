@@ -86,6 +86,9 @@
     <ClCompile Include="Source\MyLibrary\Light.cpp">
       <Filter>MyLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="Source\MyLibrary\Shadow.cpp">
+      <Filter>MyLibrary</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -187,6 +190,9 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\MyLibrary\Light.h">
+      <Filter>MyLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Shadow.h">
       <Filter>MyLibrary</Filter>
     </ClInclude>
   </ItemGroup>

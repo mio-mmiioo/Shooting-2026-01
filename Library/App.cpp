@@ -3,6 +3,7 @@
 #include "ObjectManager.h"
 #include "Time.h"
 #include "../Source/MyLibrary/Input.h"
+//#include "../Source/MyLibrary/Shadow.h"
 #include <DxLib.h>
 
 void AppInit()
@@ -18,12 +19,14 @@ void AppUpdate()
 	Input::StateUpdate();
 	SceneManager::Update();
 	ObjectManager::Update();
+	//Shadow::Update(); // オブジェクトを描画する前に処理する
 }
 
 void AppDraw()
 {
 	Time::Refresh();
 	ObjectManager::Draw();
+	//Shadow::Draw(); // オブジェクトを描画後に処理する
 	SceneManager::Draw();
 }
 
