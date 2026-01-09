@@ -10,10 +10,13 @@
 
 namespace GameMaster
 {
-	// 開発時のみ使用
-	const int ADD_HP = -3;
+	// 開発時のみ仕様
+	const float CHECK_FRONT_LENGTH = 100.0f;
+	const float CHECK_BACK_LENGTH = 100.0f;
+
 
 	Player* player = nullptr;
+	Stage* stage = nullptr;
 }
 
 void GameMaster::Init()
@@ -28,10 +31,11 @@ void GameMaster::Update()
 {
 	Light::Update();
 	player = FindGameObject<Player>();
+	stage = FindGameObject<Stage>();
 
 	if (player->GetIsAttack() == true)
 	{
-		CanShoot::AttackedObject(ADD_HP);
+		CanShoot::AttackedObject(-player->GetAttackPower());
 	}
 }
 
@@ -53,4 +57,14 @@ bool GameMaster::IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition)
 		return true;
 	}
 	return false;
+}
+
+// 現在地が地面や壁にめり込んでいる場合、押し返す
+void GameMaster::CheckSetPosition(Transform& transform, float time, VECTOR3 gravity, float distanceR)
+{
+	stage->SetOnGround(transform.position_, time, gravity); // ステージの位置を確認し、空中に浮いていないか確認する 浮いていたら重力をかける
+	VECTOR3 front = transform.position_ + VECTOR3(0, 0, 1) * CHECK_FRONT_LENGTH * MGetRotY(transform.rotation_.y);
+	VECTOR3 back = transform.position_ + VECTOR3(0, 0, 1) * -CHECK_BACK_LENGTH * MGetRotY(transform.rotation_.y);
+	stage->CheckPush(transform.position_, front, distanceR); // ステージへのめり込みを確認する(前方)
+	stage->CheckPush(transform.position_, back, distanceR);  // ステージへのめり込みを確認する(後方)
 }

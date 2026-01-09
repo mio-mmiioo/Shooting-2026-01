@@ -1,5 +1,6 @@
 #include "Player.h"
 #include <assert.h>
+#include "../../ImGui/imgui.h"
 #include "../MyLibrary/Input.h"
 #include "../MyLibrary/Light.h"
 #include "../MyLibrary/Color.h"
@@ -28,6 +29,10 @@ Player::Player(const VECTOR3& position, float ang, int hp)
 	assert(hModel_ > 0);
 	hitModel_ = MV1LoadModel("data/model/player_c.mv1");
 	assert(hitModel_ > 0);
+
+	time_ = 0.0f;
+	gravity_ = PLAYER::G;
+	distanceR_ = PLAYER::DISTANCE_R;
 	
 	transform_.MakeLocalMatrix();
 	MV1SetupCollInfo(hModel_);
@@ -99,13 +104,15 @@ void Player::Update()
 		}
 	}
 
+
+	GameMaster::CheckSetPosition(transform_, time_, gravity_, distanceR_);
+	camera_->SetPlayerPosition(transform_);
+	Light::SetPosition(transform_.position_);
+
 	// 位置情報の更新
 	transform_.MakeLocalMatrix();
 	MV1SetMatrix(hModel_, transform_.GetLocalMatrix());
 	MV1RefreshCollInfo(hModel_);
-
-	camera_->SetPlayerPosition(transform_);
-	Light::SetPosition(transform_.position_);
 }
 
 void Player::Draw()
@@ -135,9 +142,38 @@ void Player::Draw()
 	}
 }
 
+int Player::GetAttackPower()
+{
+	if (isAttack_ == true)
+	{
+		return gun_->GetAttack();
+	}
+
+	return 0; // ±ゼロを返す
+}
+
 // 開発時のみ使用
 void Player::DevelopmentInput()
 {
+	{
+		Transform t = transform_;
+
+		ImGui::Begin("Player");
+		ImGui::Text("position");
+		float p[3] = { t.position_.x, t.position_.y, t.position_.z };
+		ImGui::SliderFloat3("position", p, 0.0f, 10000.0f);
+
+		ImGui::Text("rotation");
+		float r[3] = { t.rotation_.x, t.rotation_.y, t.rotation_.z };
+		ImGui::SliderFloat3("rotation", r, -DX_PI_F, DX_PI_F);
+
+		ImGui::End();
+
+		transform_.position_ = VECTOR3(p[0], p[1], p[2]);
+		transform_.rotation_ = VECTOR3(r[0], r[1], r[2]);
+	}
+
+
 	// 入力回転
 	{
 		if (Input::IsKeyKeepDown("rotateRight"))

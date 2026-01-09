@@ -20,6 +20,7 @@ public:
 	void Draw() override;
 
 	bool GetIsAttack() { return isAttack_; } // プレイヤーが攻撃をしているか true→攻撃している
+	int GetAttackPower(); // 銃弾一発の攻撃力を返す
 
 private:
 	void DevelopmentInput();					// 開発時のみ使用

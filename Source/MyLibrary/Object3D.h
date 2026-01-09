@@ -78,4 +78,8 @@ protected:
 	float moveSpeed_;	// 移動速度
 	int hp_;			// 体力
 	int objectNumber_;	// オブジェクトの識別番号
+
+	float time_; // 空中にいる時間
+	VECTOR3 gravity_; // 重力
+	float distanceR_; // ものが当たる半径
 };
