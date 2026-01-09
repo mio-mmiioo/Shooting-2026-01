@@ -39,7 +39,11 @@ Player::Player(const VECTOR3& position, float ang, int hp)
 
 	rotateSpeed_ = PLAYER::ROTATE_SPEED;
 	moveSpeed_ = PLAYER::MOVE_SPEED;
+	
 	camera_ = FindGameObject<Camera>();
+	gun_ = new Gun();
+	currentGun_ = GUN::TYPE::HAND; 
+	gun_->SetGunType(currentGun_); // 使用する銃の種類をセット
 
 	isHit_ = false;
 	isAttack_ = false;
@@ -58,11 +62,21 @@ void Player::Update()
 	// 移動処理
 	DevelopmentInput();
 
-	// 銃弾の発射
+	// 銃弾関連
 	{
+		// リロード
+		if (Input::IsKeyDown("reload"))
+		{
+			gun_->ReloadBullet();
+		}
+
+		// 発砲
 		if (Input::IsKeyDown("outBullet"))
 		{
-			isAttack_ = true;
+			if (gun_->OutBullet() == true)
+			{
+				isAttack_ = true;
+			}
 		}
 		else
 		{
@@ -112,6 +126,12 @@ void Player::Draw()
 	else
 	{
 		DrawGraph(mouseX_ - aiming_.halfWidth, mouseY_ - aiming_.halfHeight, aiming_.hImage, TRUE); // 標準
+	}
+
+	if (gun_->GetReloadTimer() > 0)
+	{
+		float rate = (gun_->GetReloadTime() - gun_->GetReloadTimer()) / gun_->GetReloadTime() * 100; // (maxの時間 - 残り時間) / maxの時間 * 100 = 〇〇%
+		DrawCircleGauge(mouseX_, mouseY_, 100.0, reload_.hImage, rate);
 	}
 }
 

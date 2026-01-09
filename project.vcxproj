@@ -162,6 +162,7 @@
     <ClInclude Include="Source\PlayScene\Camera.h" />
     <ClInclude Include="Source\PlayScene\CanShoot.h" />
     <ClInclude Include="Source\PlayScene\GameMaster.h" />
+    <ClInclude Include="Source\PlayScene\Gun.h" />
     <ClInclude Include="Source\PlayScene\Player.h" />
     <ClInclude Include="Source\PlayScene\PlayScene.h" />
     <ClInclude Include="Source\PlayScene\Stage\Stage.h" />
@@ -195,6 +196,7 @@
     <ClCompile Include="Source\PlayScene\Camera.cpp" />
     <ClCompile Include="Source\PlayScene\CanShoot.cpp" />
     <ClCompile Include="Source\PlayScene\GameMaster.cpp" />
+    <ClCompile Include="Source\PlayScene\Gun.cpp" />
     <ClCompile Include="Source\PlayScene\Player.cpp" />
     <ClCompile Include="Source\PlayScene\PlayScene.cpp" />
     <ClCompile Include="Source\PlayScene\Stage\Stage.cpp" />

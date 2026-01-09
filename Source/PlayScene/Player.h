@@ -1,5 +1,6 @@
 #pragma once
 #include "../MyLibrary/Object3D.h"
+#include "Gun.h"
 
 class Camera;
 
@@ -25,12 +26,14 @@ private:
 	void SetImage(image& i, std::string path);	// 画像のセット
 
 	Camera* camera_;
+	Gun* gun_;
 
 	int mouseX_;				// マウスのx座標
 	int mouseY_;				// マウスのy座標
 	VECTOR3 wPointerPosition_;	// スクリーン座標の照準をワールド座標に変換したものを代入する変数
 	VECTOR3 startPosition_;		// 銃の軌道の始点
 
+	GUN::TYPE currentGun_; // 現在の銃の種類
 	bool isHit_;	// 銃弾が当たるか true→当たる
 	bool isAttack_; // 攻撃（発砲）しているか
 
@@ -38,5 +41,7 @@ private:
 	image aiming_;		// 照準の画像
 	image hitAiming_;	// 照準が何かにあたるときの画像
 	image reload_;		// リロードの画像
+
+
 };
 
