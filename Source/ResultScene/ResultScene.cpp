@@ -1,6 +1,7 @@
 #include "ResultScene.h"
 #include "../MyLibrary/Input.h"
 #include "../MyLibrary/Color.h"
+#include "Result.h"
 
 ResultScene::ResultScene()
 {
@@ -19,5 +20,6 @@ void ResultScene::Update()
 
 void ResultScene::Draw()
 {
+	Result::Draw();
 	DrawString(0, 0, "RESULT SCENE", Color::TEXT);
 }

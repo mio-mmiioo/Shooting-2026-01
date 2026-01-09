@@ -1,8 +1,9 @@
 #include "StageObject.h"
 #include <assert.h>
 #include "../Collision.h"
+#include "../../MyLibrary/Observer.h"
 
-StageObject::StageObject(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp)
+StageObject::StageObject(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp, int score)
 {
 	const std::string folder = "data/model/";
 	hModel_ = MV1LoadModel((folder + fileName + ".mv1").c_str());
@@ -32,6 +33,8 @@ StageObject::StageObject(const std::string& fileName, const VECTOR3& position, c
 		objectNumber_ = OBJECT_SORT::OBJ_OBJECT;
 	}
 
+	score_ = score;
+
 	Collision::AddObject(this);
 }
 
@@ -53,6 +56,7 @@ void StageObject::Update()
 	if (isDestructible_ == true && hp_ <= 0)
 	{
 		DestroyMe();
+		Observer::AddScore(score_);
 		return;
 	}
 }

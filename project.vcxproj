@@ -158,6 +158,7 @@
     <ClInclude Include="Source\MyLibrary\Input.h" />
     <ClInclude Include="Source\MyLibrary\Light.h" />
     <ClInclude Include="Source\MyLibrary\Object3D.h" />
+    <ClInclude Include="Source\MyLibrary\Observer.h" />
     <ClInclude Include="Source\MyLibrary\Shadow.h" />
     <ClInclude Include="Source\PlayScene\Camera.h" />
     <ClInclude Include="Source\PlayScene\Collision.h" />
@@ -168,6 +169,7 @@
     <ClInclude Include="Source\PlayScene\Stage\Stage.h" />
     <ClInclude Include="Source\PlayScene\Stage\StageObject.h" />
     <ClInclude Include="Source\PlayScene\Stage\WayInfo.h" />
+    <ClInclude Include="Source\ResultScene\Result.h" />
     <ClInclude Include="Source\ResultScene\ResultScene.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\SceneFactory.h" />
@@ -192,6 +194,7 @@
     <ClCompile Include="Source\MyLibrary\Input.cpp" />
     <ClCompile Include="Source\MyLibrary\Light.cpp" />
     <ClCompile Include="Source\MyLibrary\Object3D.cpp" />
+    <ClCompile Include="Source\MyLibrary\Observer.cpp" />
     <ClCompile Include="Source\MyLibrary\Shadow.cpp" />
     <ClCompile Include="Source\PlayScene\Camera.cpp" />
     <ClCompile Include="Source\PlayScene\Collision.cpp" />
@@ -202,6 +205,7 @@
     <ClCompile Include="Source\PlayScene\Stage\Stage.cpp" />
     <ClCompile Include="Source\PlayScene\Stage\StageObject.cpp" />
     <ClCompile Include="Source\PlayScene\Stage\WayInfo.cpp" />
+    <ClCompile Include="Source\ResultScene\Result.cpp" />
     <ClCompile Include="Source\ResultScene\ResultScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
     <ClCompile Include="Source\TitleScene\TitleScene.cpp" />

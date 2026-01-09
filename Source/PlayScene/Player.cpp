@@ -108,12 +108,6 @@ void Player::Update()
 	transform_.position_.y -= velocityY_;
 	velocityY_ += gravity_;
 
-	//if (transform_.position_.y < 0)
-	//{
-	//	transform_.position_.y = 0;
-	//	velocityY_ = 0.0f;
-	//}
-
 	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_);
 
 	camera_->SetPlayerPosition(transform_);

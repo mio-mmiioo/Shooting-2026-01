@@ -51,9 +51,10 @@ void Stage::ReadMappingData(std::string filename)
 			VECTOR rot = VECTOR3(csv->GetFloat(line, 5), csv->GetFloat(line, 6), csv->GetFloat(line, 7));
 			VECTOR sca = VECTOR3(csv->GetFloat(line, 8), csv->GetFloat(line, 9), csv->GetFloat(line, 10));
 			int hp = csv->GetInt(line, 11);
+			int score = csv->GetInt(line, 12);
 			char file[STAGE::DATA_SIZE];
 			sprintf_s<STAGE::DATA_SIZE>(file, "Stage_Obj%03d", csv->GetInt(line, 1));
-			StageObject* obj = new StageObject(file, pos, rot, sca, hp);
+			StageObject* obj = new StageObject(file, pos, rot, sca, hp, score);
 		}
 	}
 	delete csv;

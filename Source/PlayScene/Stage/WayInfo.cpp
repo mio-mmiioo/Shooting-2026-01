@@ -8,11 +8,11 @@ struct point {
 };
 
 struct vertex {
-	point position = { 0, 0 }; // 位置情報
-	int distance = -1; // 距離
+	point position = { 0, 0 };	// 位置情報
+	int distance = -1;			// 距離
 	int number = -1;
-	bool isDicision = false; // 決定しているか
-	std::vector<vertex> next; // つながってる頂点リスト
+	bool isDicision = false;	// 決定しているか
+	std::vector<vertex> next;	// つながってる頂点リスト
 	std::vector<point> posList; // 最短経路の道情報
 };
 
@@ -48,7 +48,7 @@ namespace WayInfo {
 	vertex FindStartVertex();						// 頂点リストの最初の頂点を求める
 	void SetShortestWay(vertex start);				// 最短経路を求める
 	int GetCost(point startPos, point endPos);		// 距離(cost)を求める
-	VECTOR3 GetShortestWay(point pos); // startPosからの最短経路をかえす
+	VECTOR3 GetShortestWay(point pos);				// startPosからの最短経路をかえす
 	bool IsSameVertex(point point1, point point2);	// point1とpoint2が同じ頂点か調べる 同じ→true
 	point VectorToPoint(VECTOR3 position);
 
