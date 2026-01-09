@@ -160,7 +160,7 @@
     <ClInclude Include="Source\MyLibrary\Object3D.h" />
     <ClInclude Include="Source\MyLibrary\Shadow.h" />
     <ClInclude Include="Source\PlayScene\Camera.h" />
-    <ClInclude Include="Source\PlayScene\CanShoot.h" />
+    <ClInclude Include="Source\PlayScene\Collision.h" />
     <ClInclude Include="Source\PlayScene\GameMaster.h" />
     <ClInclude Include="Source\PlayScene\Gun.h" />
     <ClInclude Include="Source\PlayScene\Player.h" />
@@ -194,7 +194,7 @@
     <ClCompile Include="Source\MyLibrary\Object3D.cpp" />
     <ClCompile Include="Source\MyLibrary\Shadow.cpp" />
     <ClCompile Include="Source\PlayScene\Camera.cpp" />
-    <ClCompile Include="Source\PlayScene\CanShoot.cpp" />
+    <ClCompile Include="Source\PlayScene\Collision.cpp" />
     <ClCompile Include="Source\PlayScene\GameMaster.cpp" />
     <ClCompile Include="Source\PlayScene\Gun.cpp" />
     <ClCompile Include="Source\PlayScene\Player.cpp" />

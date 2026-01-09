@@ -1,6 +1,6 @@
 #include "StageObject.h"
 #include <assert.h>
-#include "../CanShoot.h"
+#include "../Collision.h"
 
 StageObject::StageObject(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp)
 {
@@ -32,7 +32,7 @@ StageObject::StageObject(const std::string& fileName, const VECTOR3& position, c
 		objectNumber_ = OBJECT_SORT::OBJ_OBJECT;
 	}
 
-	CanShoot::AddCanShootObject(this);
+	Collision::AddObject(this);
 }
 
 StageObject::~StageObject()

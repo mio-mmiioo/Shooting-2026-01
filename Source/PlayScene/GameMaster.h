@@ -9,5 +9,5 @@ namespace GameMaster
 	void Release();
 
 	bool IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition);
-	void CheckSetPosition(Transform& transform, float time, VECTOR3 gravity, float distanceR); 
+	void CheckSetPosition(Object3D* obj, float* velocityY, float distanceR);
 }

@@ -80,6 +80,10 @@ protected:
 	int objectNumber_;	// オブジェクトの識別番号
 
 	float time_; // 空中にいる時間
-	VECTOR3 gravity_; // 重力
+	float gravity_; // 重力
+	float velocityY_; // y方向に加わる力
 	float distanceR_; // ものが当たる半径
+
+	// 開発時のみ使用
+	bool isOnGround_; // 足が地についているか true→ついている
 };

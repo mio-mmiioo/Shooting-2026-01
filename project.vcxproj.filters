@@ -80,7 +80,7 @@
     <ClCompile Include="Source\PlayScene\GameMaster.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene\CanShoot.cpp">
+    <ClCompile Include="Source\PlayScene\Collision.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\MyLibrary\Light.cpp">
@@ -89,6 +89,7 @@
     <ClCompile Include="Source\MyLibrary\Shadow.cpp">
       <Filter>MyLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="Source\PlayScene\Gun.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -186,7 +187,7 @@
     <ClInclude Include="Source\PlayScene\GameMaster.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayScene\CanShoot.h">
+    <ClInclude Include="Source\PlayScene\Collision.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\MyLibrary\Light.h">
@@ -195,6 +196,7 @@
     <ClInclude Include="Source\MyLibrary\Shadow.h">
       <Filter>MyLibrary</Filter>
     </ClInclude>
+    <ClInclude Include="Source\PlayScene\Gun.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

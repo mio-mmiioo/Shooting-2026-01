@@ -9,7 +9,7 @@
 
 namespace PLAYER
 {
-	VECTOR3 G = { 0, 9.8, 0 };	// 重力
+	const float G = 0.05;	// 重力
 	float ROTATE_SPEED = 3.0f;	// 回転速度
 	float MOVE_SPEED = 5.0f;	// 移動速度
 
@@ -104,8 +104,11 @@ void Player::Update()
 		}
 	}
 
+	// 重力を加える
+	transform_.position_.y -= velocityY_;
+	velocityY_ += gravity_;
 
-	GameMaster::CheckSetPosition(transform_, time_, gravity_, distanceR_);
+	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_);
 	camera_->SetPlayerPosition(transform_);
 	Light::SetPosition(transform_.position_);
 

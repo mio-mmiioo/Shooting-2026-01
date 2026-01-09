@@ -6,7 +6,7 @@
 #include "../MyLibrary/Light.h"
 //#include "../MyLibrary/Shadow.h"
 
-#include "CanShoot.h"
+#include "Collision.h"
 
 namespace GameMaster
 {
@@ -35,7 +35,7 @@ void GameMaster::Update()
 
 	if (player->GetIsAttack() == true)
 	{
-		CanShoot::AttackedObject(-player->GetAttackPower());
+		Collision::AttackedObject(-player->GetAttackPower());
 	}
 }
 
@@ -52,7 +52,7 @@ bool GameMaster::IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition)
 {
 	// 敵、破壊可能オブジェクトにあたるならtrueを返す
 	VECTOR3 hit;
-	if (CanShoot::CheckHitObject(startPosition, endPosition, &hit) == true)
+	if (Collision::CheckHitObject(startPosition, endPosition, &hit) == true)
 	{
 		return true;
 	}
@@ -60,11 +60,11 @@ bool GameMaster::IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition)
 }
 
 // 現在地が地面や壁にめり込んでいる場合、押し返す
-void GameMaster::CheckSetPosition(Transform& transform, float time, VECTOR3 gravity, float distanceR)
+void GameMaster::CheckSetPosition(Object3D* obj, float* velocityY, float distanceR)
 {
-	stage->SetOnGround(transform.position_, time, gravity); // ステージの位置を確認し、空中に浮いていないか確認する 浮いていたら重力をかける
-	VECTOR3 front = transform.position_ + VECTOR3(0, 0, 1) * CHECK_FRONT_LENGTH * MGetRotY(transform.rotation_.y);
-	VECTOR3 back = transform.position_ + VECTOR3(0, 0, 1) * -CHECK_BACK_LENGTH * MGetRotY(transform.rotation_.y);
-	stage->CheckPush(transform.position_, front, distanceR); // ステージへのめり込みを確認する(前方)
-	stage->CheckPush(transform.position_, back, distanceR);  // ステージへのめり込みを確認する(後方)
+	Collision::SetOnGround(obj, velocityY); // ステージの位置を確認し、空中に浮いていないか確認する 浮いていたら重力をかける
+	//VECTOR3 front = transform.position_ + VECTOR3(0, 0, 1) * CHECK_FRONT_LENGTH * MGetRotY(transform.rotation_.y);
+	//VECTOR3 back = transform.position_ + VECTOR3(0, 0, 1) * -CHECK_BACK_LENGTH * MGetRotY(transform.rotation_.y);
+	//stage->CheckPush(transform.position_, front, distanceR); // ステージへのめり込みを確認する(前方)
+	//stage->CheckPush(transform.position_, back, distanceR);  // ステージへのめり込みを確認する(後方)
 }
