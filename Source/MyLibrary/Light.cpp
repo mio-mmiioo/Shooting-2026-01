@@ -11,7 +11,7 @@ namespace Light {
 	const float ATTEN1 = 0.003f;
 	const float ATTEN2 = 0.0f;
 
-	VECTOR3 lightPosition = INIT_LIGHT_POSITION + LOOK_HEIGHT;
+	VECTOR3 lightPosition = INIT_LIGHT_POSITION + (LOOK_HEIGHT * 0.5f);
 	float range = RANGE;
 	float atten0 = ATTEN0;
 	float atten1 = ATTEN1;

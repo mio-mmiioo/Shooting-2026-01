@@ -21,41 +21,6 @@ Stage::~Stage()
 {
 }
 
-void Stage::SetOnGround(VECTOR3& pos, float& time, VECTOR3 Gravity)
-{
-	VECTOR3 hit;
-	VECTOR3 pos1 = pos + VECTOR3(0,  STAGE::CHECK_ONGROUND_LENGTH, 0);
-	VECTOR3 pos2 = pos - VECTOR3(0, -STAGE::CHECK_ONGROUND_LENGTH, 0);
-	if (CollideLine(pos1, pos2, &hit))
-	{
-		pos = hit;
-		if (time != 0)
-		{
-			time = 0;
-		}
-		else
-		{
-			// 空中だから、落下処理
-			time += Time::DeltaTime();
-			pos -= Gravity * time * time;
-		}
-	}
-}
-
-void Stage::CheckPush(VECTOR3& pos1, VECTOR3 pos2, float minDistance)
-{
-	VECTOR3 hit;
-	VECTOR3 direction; 
-	if (CollideLine(pos1, pos2, &hit)) // 正面にオブジェクトがある
-	{
-		if (VSize(pos1 - hit) < minDistance) // めり込んでいる→めり込んでいる距離押し返す
-		{
-			direction = VNorm(hit - pos1); // 押し返す方向のベクトル
-			pos1 -= direction * (minDistance - VSize(pos1 - hit)); // ( 押し返す方向 ) * ( 押し返したい距離 )
-		}
-	}
-}
-
 void Stage::ReadMappingData(std::string filename)
 {
 	const std::string folder = "data/stage/";

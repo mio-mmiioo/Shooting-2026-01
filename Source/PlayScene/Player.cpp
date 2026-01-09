@@ -15,7 +15,7 @@ namespace PLAYER
 
 	const VECTOR3 CAPSULE_POS1 = { 0.0f,  50.0f, 0.0f };
 	const VECTOR3 CAPSULE_POS2 = { 0.0f, 150.0f, 0.0f };
-	const float DISTANCE_R = 50.0f;
+	const float DISTANCE_R = 100.0f;
 
 	// ŠJ”­Žž‚Ì‚Ý
 	const float DIRECTION_LENGTH = 100.0f;
@@ -108,7 +108,14 @@ void Player::Update()
 	transform_.position_.y -= velocityY_;
 	velocityY_ += gravity_;
 
+	//if (transform_.position_.y < 0)
+	//{
+	//	transform_.position_.y = 0;
+	//	velocityY_ = 0.0f;
+	//}
+
 	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_);
+
 	camera_->SetPlayerPosition(transform_);
 	Light::SetPosition(transform_.position_);
 

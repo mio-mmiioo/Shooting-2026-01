@@ -58,7 +58,10 @@ bool Collision::CheckHitObject(VECTOR3 pos1, VECTOR3 pos2, VECTOR3* hit)
 
 void Collision::AttackedObject(int num)
 {
-	checkObject->ADD_HP(num);
+	if (checkObject != nullptr)
+	{
+		checkObject->AddHp(num);
+	}
 }
 
 void Collision::SetOnGround(Object3D* obj, float* velocityY)
@@ -67,17 +70,41 @@ void Collision::SetOnGround(Object3D* obj, float* velocityY)
 	VECTOR3 p = obj->GetTransform().position_;
 	VECTOR3 pos1 = p + CHECK_ONGROUND_LENGTH;
 	VECTOR3 pos2 = p - CHECK_ONGROUND_LENGTH;
-	if (obj->CollideLine(pos1, pos2, &hit))
+	for (Object3D* o : allObjectList)
 	{
-		if ((p.y - hit.y) <= 0.0f) // めり込んでる
+		if (obj == o)
 		{
-			VECTOR3 ret = p - VECTOR3(0.0f, p.y - hit.y, 0.0f);
-			obj->SetPosition(ret);
-			*velocityY = 0.0f;
 			return;
 		}
-	}
 
-	obj->SetPosition(p);
+		if (o->CollideLine(pos1, pos2, &hit))
+		{
+			if (p.y < hit.y)
+			{
+				// めり込んでる
+				VECTOR3 ret = p - VECTOR3(0.0f, p.y - hit.y, 0.0f);
+				obj->SetPosition(ret);
+				*velocityY = 0.0f;
+				return;
+			}
+		}
+	}
 }
 
+void Collision::CheckPush(Object3D* obj, VECTOR3 pos1, VECTOR3 pos2, float minDistance)
+{
+	VECTOR3 hit;
+	VECTOR3 direction;
+	for (Object3D* o : allObjectList)
+	{
+		if (o->CollideLine(pos1, pos2, &hit)) // 正面にオブジェクトがある
+		{
+			if (VSize(pos1 - hit) < minDistance) // めり込んでいる→めり込んでいる距離押し返す
+			{
+				direction = VNorm(hit - pos1); // 押し返す方向のベクトル
+				pos1 -= direction * (minDistance - VSize(pos1 - hit)); // ( 押し返す方向 ) * ( 押し返したい距離 )
+				obj->SetPosition(pos1);
+			}
+		}
+	}
+}

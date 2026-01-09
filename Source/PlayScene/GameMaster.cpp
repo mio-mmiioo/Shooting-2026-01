@@ -41,7 +41,7 @@ void GameMaster::Update()
 
 void GameMaster::Draw()
 {
-	WayInfo::WayDraw();
+	//WayInfo::WayDraw();
 }
 
 void GameMaster::Release()
@@ -62,9 +62,10 @@ bool GameMaster::IsBulletHit(VECTOR3 startPosition, VECTOR3 endPosition)
 // 現在地が地面や壁にめり込んでいる場合、押し返す
 void GameMaster::CheckSetPosition(Object3D* obj, float* velocityY, float distanceR)
 {
+	Transform t = obj->GetTransform();
+	VECTOR3 front = t.position_ + VECTOR3(0, 0, 1) * CHECK_FRONT_LENGTH * MGetRotY(t.rotation_.y);
+	VECTOR3 back = t.position_ + VECTOR3(0, 0, 1) * -CHECK_BACK_LENGTH * MGetRotY(t.rotation_.y);
+	Collision::CheckPush(obj, t.position_, front, distanceR); // ステージへのめり込みを確認する(前方)
+	Collision::CheckPush(obj, t.position_, back, distanceR);  // ステージへのめり込みを確認する(後方)
 	Collision::SetOnGround(obj, velocityY); // ステージの位置を確認し、空中に浮いていないか確認する 浮いていたら重力をかける
-	//VECTOR3 front = transform.position_ + VECTOR3(0, 0, 1) * CHECK_FRONT_LENGTH * MGetRotY(transform.rotation_.y);
-	//VECTOR3 back = transform.position_ + VECTOR3(0, 0, 1) * -CHECK_BACK_LENGTH * MGetRotY(transform.rotation_.y);
-	//stage->CheckPush(transform.position_, front, distanceR); // ステージへのめり込みを確認する(前方)
-	//stage->CheckPush(transform.position_, back, distanceR);  // ステージへのめり込みを確認する(後方)
 }
