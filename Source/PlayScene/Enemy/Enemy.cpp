@@ -10,7 +10,7 @@
 
 void Enemy::DevelopmentInput(Transform& t)
 {
-	ImGui::Begin("Enemy");
+	//ImGui::Begin("Enemy");
 	ImGui::Text("position");
 	ImGui::InputFloat("position:x", &t.position_.x);
 	ImGui::InputFloat("position:y", &t.position_.y);
@@ -26,14 +26,14 @@ void Enemy::DevelopmentInput(Transform& t)
 	ImGui::InputFloat("scale:y", &t.scale_.y);
 	ImGui::InputFloat("scale:z", &t.scale_.z);
 
-	ImGui::End();
+	//ImGui::End();
 }
 
 void Enemy::CreateEnemy(int enemyNumber, const std::string& fileName, const Transform& t, int hp, int score)
 {
 	switch (enemyNumber)
 	{
-	case E_SORT::TOUHU:
+	case E_SORT::TOUHU_2:
 		new Touhu(fileName, t, hp, score);
 		break;
 	}

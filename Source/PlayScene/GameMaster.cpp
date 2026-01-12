@@ -22,7 +22,7 @@ namespace GameMaster
 void GameMaster::Init()
 {
 	WayInfo::Init();
-	new Stage(10); // 建物だけのステージ
+	new Stage(11); // 建物だけのステージ
 	Light::Init();
 	//Shadow::Init(); // Stageの後に処理する
 }

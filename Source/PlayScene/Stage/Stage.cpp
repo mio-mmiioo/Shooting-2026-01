@@ -54,7 +54,7 @@ void Stage::ReadMappingData(std::string filename)
 
 			if (sortNumber == OBJECT_SORT::OBJ_CHARA) {
 				int enemyNumber = csv->GetInt(line, DATA_NUM::NUMBER);
-				sprintf_s<STAGE::DATA_SIZE>(file, "Enemy%03d", csv->GetInt(line, DATA_NUM::NUMBER));
+				sprintf_s<STAGE::DATA_SIZE>(file, "enemy%03d", csv->GetInt(line, DATA_NUM::NUMBER));
 				Enemy::CreateEnemy(enemyNumber, file, t, hp, score);
 			}
 			else if (sortNumber == OBJECT_SORT::OBJ_OBJECT) {

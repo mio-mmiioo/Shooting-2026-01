@@ -1,13 +1,14 @@
 #include "Touhu.h"
+#include "../../../ImGui/imgui.h"
 #include "../../MyLibrary/Observer.h"
 #include "../GameMaster.h"
 #include "../Collision.h"
+#include "Enemy.h"
 #include <assert.h>
 
 namespace TOUHU
 {
-	const float G = 9.8f;
-	VECTOR3 SIZE = { 50.0f, 200.0f, 50.0f }; // hitModelのサイズ
+	const float G = 0.05f;
 
 	const float MOVE_SPEED = 3.0f;
 	const float ROTATE_SPEED = 3.0f;
@@ -54,10 +55,19 @@ Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
 	Collision::AddObject(this);
 
 	objectNumber_ = OBJECT_SORT::OBJ_CHARA;
+	state_ = Enemy::E_STATE::STAY;
 }
 
 Touhu::~Touhu()
 {
+	if (hModel_ > 0)
+	{
+		hModel_ = -1;
+	}
+	if (hitModel_ > 0)
+	{
+		hitModel_ = -1;
+	}
 }
 
 void Touhu::Update()
@@ -70,12 +80,27 @@ void Touhu::Update()
 		return;
 	}
 
-	Enemy::DevelopmentInput(transform_);
+	switch (state_)
+	{
+	case Enemy::E_STATE::STAY:
+		UpdateStay();
+		break;
+	case Enemy::E_STATE::WALK:
+		UpdateWalk();
+		break;
+	}
+
+	DevelopmentInput();
+
+	// 重力を加える
+	transform_.position_.y -= velocityY_;
+	velocityY_ += gravity_;
 
 	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_);
 
+
 	// 位置情報の更新
-	transform_.MakeLocalMatrix();
+	
 	MV1SetMatrix(hitModel_, transform_.GetLocalMatrix());
 	MV1RefreshCollInfo(hitModel_);
 }
@@ -83,4 +108,38 @@ void Touhu::Update()
 void Touhu::Draw()
 {
 	Object3D::Draw();
+}
+
+void Touhu::DevelopmentInput()
+{
+	int s = state_;
+	ImGui::Begin("Touhu");
+
+	ImGui::RadioButton("Stay", &s, Enemy::E_STATE::STAY);
+	ImGui::RadioButton("Walk", &s, Enemy::E_STATE::WALK);
+
+	Enemy::DevelopmentInput(transform_);
+
+	switch (s)
+	{
+	case Enemy::E_STATE::STAY:
+		state_ = Enemy::E_STATE::STAY;
+		break;
+	case Enemy::E_STATE::WALK:
+		state_ = Enemy::E_STATE::WALK;
+		break;
+	}
+
+	ImGui::End();
+
+	transform_.MakeLocalMatrix();
+}
+
+void Touhu::UpdateStay()
+{
+	transform_.rotation_.y += rotateSpeed_ * DegToRad;
+}
+
+void Touhu::UpdateWalk()
+{
 }
