@@ -3,7 +3,7 @@
 #include "../Collision.h"
 #include "../../MyLibrary/Observer.h"
 
-StageObject::StageObject(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp, int score)
+StageObject::StageObject(const std::string& fileName, const Transform& t, int hp, int score)
 {
 	const std::string folder = "data/model/";
 	hModel_ = MV1LoadModel((folder + fileName + ".mv1").c_str());
@@ -11,9 +11,7 @@ StageObject::StageObject(const std::string& fileName, const VECTOR3& position, c
 	hitModel_ = MV1LoadModel((folder + fileName + "_c.mv1").c_str());
 	assert(hitModel_ > 0);
 
-	transform_.position_ = position;
-	transform_.rotation_ = rotation;
-	transform_.scale_ = scale;
+	transform_ = t;
 	transform_.MakeLocalMatrix();
 	MV1SetMatrix(hitModel_, transform_.GetLocalMatrix());
 	MV1SetupCollInfo(hitModel_);

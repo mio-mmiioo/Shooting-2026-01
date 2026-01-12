@@ -29,12 +29,12 @@ void Enemy::DevelopmentInput(Transform& t)
 	ImGui::End();
 }
 
-void Enemy::CreateEnemy(int enemyNumber, const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp, int score)
+void Enemy::CreateEnemy(int enemyNumber, const std::string& fileName, const Transform& t, int hp, int score)
 {
 	switch (enemyNumber)
 	{
 	case E_SORT::TOUHU:
-		new Touhu(fileName, position, rotation, scale, hp, score);
+		new Touhu(fileName, t, hp, score);
 		break;
 	}
 }

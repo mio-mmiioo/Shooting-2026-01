@@ -27,7 +27,7 @@ namespace TOUHU
 	const int POS_LIST_DIV_NUM = 50;
 }
 
-Touhu::Touhu(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp, int score)
+Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
 {
 	const std::string folder = "data/model/";
 	hModel_ = MV1LoadModel((folder + fileName + ".mv1").c_str());
@@ -35,9 +35,7 @@ Touhu::Touhu(const std::string& fileName, const VECTOR3& position, const VECTOR3
 	hitModel_ = MV1LoadModel((folder + fileName + "_c.mv1").c_str());
 	assert(hitModel_ > 0);
 
-	transform_.position_ = position;
-	transform_.rotation_ = rotation;
-	transform_.scale_ = scale;
+	transform_ = t;
 	hp_ = hp;
 	score_ = score;
 

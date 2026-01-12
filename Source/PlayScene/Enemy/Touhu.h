@@ -5,7 +5,7 @@
 class Touhu : public Object3D
 {
 public:
-	Touhu(const std::string& fileName, const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp, int score);
+	Touhu(const std::string& fileName, const Transform& t, int hp, int score);
 	~Touhu();
 	void Update() override;
 	void Draw() override;
