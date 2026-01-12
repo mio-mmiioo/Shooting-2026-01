@@ -1,16 +1,22 @@
 #pragma once
 #include "../../MyLibrary/Object3D.h"
 
-class Enemy : public Object3D
+namespace Enemy
 {
-public:
-	Enemy(const VECTOR3& position, float ang, int hp);
-	~Enemy();
-	void Update() override;
-	void Draw() override;
+	enum E_SORT {
+		TOUHU,
+		MAX_E_SORT
+	};
 
-private:
-	void DevelopmentInput(); // 開発時のみ使用する入力処理
-	
+	enum E_STATE {
+		STAY,
+		WALK,
+		ATTACK,
+		MAX_STATE
+	};
+
+	void DevelopmentInput(Transform& t); // 開発時のみ使用する入力処理
+	void CreateEnemy(int enemyNumber, const std::string& fileName, 
+		const VECTOR3& position, const VECTOR3& rotation, const VECTOR3& scale, int hp, int score);
 };
 

@@ -35,17 +35,15 @@ void Stage::ReadMappingData(std::string filename)
 			new Player(pos, ang, hp);
 		}
 		if (sortNumber == OBJECT_SORT::OBJ_CHARA) {
+			int enemyNumber = csv->GetInt(line, 1);
 			VECTOR pos = VECTOR3(csv->GetFloat(line, 2), csv->GetFloat(line, 3), csv->GetFloat(line, 4));
-			float ang = csv->GetFloat(line, 5);
-			int hp = csv->GetInt(line, 6);
-			switch (csv->GetInt(line, 1)) {
-			case 0:
-				new Enemy(pos, ang, hp);
-				break;
-			case 1:
-				//new Enemy(pos, ang, hp);
-				break;
-			}
+			VECTOR rot = VECTOR3(csv->GetFloat(line, 5), csv->GetFloat(line, 6), csv->GetFloat(line, 7));
+			VECTOR sca = VECTOR3(csv->GetFloat(line, 8), csv->GetFloat(line, 9), csv->GetFloat(line, 10));
+			int hp = csv->GetInt(line, 11);
+			int score = csv->GetInt(line, 12);
+			char file[STAGE::DATA_SIZE];
+			sprintf_s<STAGE::DATA_SIZE>(file, "Enemy%03d", csv->GetInt(line, 1));
+			Enemy::CreateEnemy(enemyNumber, file, pos, rot, sca, hp, score);
 		}
 		else if (sortNumber == OBJECT_SORT::OBJ_OBJECT) {
 			VECTOR pos = VECTOR3(csv->GetFloat(line, 2), csv->GetFloat(line, 3), csv->GetFloat(line, 4));

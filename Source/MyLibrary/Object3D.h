@@ -77,6 +77,7 @@ protected:
 	float rotateSpeed_;	// 回転の速度
 	float moveSpeed_;	// 移動速度
 	int hp_;			// 体力
+	int score_;			// 得点
 	int objectNumber_;	// オブジェクトの識別番号
 
 	float time_; // 空中にいる時間
