@@ -90,6 +90,11 @@
       <Filter>MyLibrary</Filter>
     </ClCompile>
     <ClCompile Include="Source\PlayScene\Gun.cpp" />
+    <ClCompile Include="Source\MyLibrary\Observer.cpp" />
+    <ClCompile Include="Source\ResultScene\Result.cpp" />
+    <ClCompile Include="Source\PlayScene\Enemy\Enemy.cpp">
+      <Filter>PlayScene\Enemy</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -197,6 +202,11 @@
       <Filter>MyLibrary</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayScene\Gun.h" />
+    <ClInclude Include="Source\MyLibrary\Observer.h" />
+    <ClInclude Include="Source\ResultScene\Result.h" />
+    <ClInclude Include="Source\PlayScene\Enemy\Enemy.h">
+      <Filter>PlayScene\Enemy</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">
@@ -222,6 +232,9 @@
     </Filter>
     <Filter Include="PlayScene\Stage">
       <UniqueIdentifier>{9a266165-b587-4b36-9e2f-712bbafd3ee6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="PlayScene\Enemy">
+      <UniqueIdentifier>{1d185245-b499-49f6-9272-06f324143ba6}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

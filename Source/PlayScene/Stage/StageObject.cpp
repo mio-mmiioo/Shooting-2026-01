@@ -15,11 +15,8 @@ StageObject::StageObject(const std::string& fileName, const VECTOR3& position, c
 	transform_.rotation_ = rotation;
 	transform_.scale_ = scale;
 	transform_.MakeLocalMatrix();
-	MV1SetMatrix(hModel_, transform_.GetLocalMatrix());
-
-	MV1SetupCollInfo(hitModel_);
 	MV1SetMatrix(hitModel_, transform_.GetLocalMatrix());
-	MV1RefreshCollInfo(hitModel_);
+	MV1SetupCollInfo(hitModel_);
 
 	hp_ = hp;
 	if (hp > 0)

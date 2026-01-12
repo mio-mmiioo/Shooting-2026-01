@@ -2,6 +2,7 @@
 #include <assert.h>
 #include "../../MyLibrary/CsvReader.h"
 #include "../Player.h"
+#include "../Enemy/Enemy.h"
 #include "StageObject.h"
 
 namespace STAGE
@@ -39,7 +40,7 @@ void Stage::ReadMappingData(std::string filename)
 			int hp = csv->GetInt(line, 6);
 			switch (csv->GetInt(line, 1)) {
 			case 0:
-				//new Player(pos, ang, hp);
+				new Enemy(pos, ang, hp);
 				break;
 			case 1:
 				//new Enemy(pos, ang, hp);
