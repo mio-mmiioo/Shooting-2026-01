@@ -21,7 +21,7 @@ namespace PLAYER
 	const float DIRECTION_LENGTH = 100.0f;
 }
 
-Player::Player(const VECTOR3& position, float ang, int hp)
+Player::Player(const VECTOR3& position, int hp)
 {
 	objectNumber_ = OBJECT_SORT::OBJ_PLAYER;
 	transform_.position_ = position;

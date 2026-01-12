@@ -14,7 +14,7 @@ struct image
 class Player : public Object3D
 {
 public:
-	Player(const VECTOR3& position, float ang, int hp);
+	Player(const VECTOR3& position, int hp);
 	~Player() override;
 	void Update() override;
 	void Draw() override;

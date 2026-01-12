@@ -20,8 +20,7 @@ namespace TOUHU
 	// 攻撃関連
 	const float ATTACK_TIME = 6.0f;
 	const int ATTACK_POWER = 2;
-	const int ADD_SCORE = 100;
-
+	
 	// 開発時のみ使用
 	const float DIRECTION_LENGTH = 100.0f;
 	const float POS_LIST_R = 50.0f;
@@ -65,10 +64,11 @@ Touhu::~Touhu()
 
 void Touhu::Update()
 {
+	// 体力が0の場合の処理
 	if (hp_ <= 0)
 	{
 		DestroyMe();
-		Observer::AddScore(TOUHU::ADD_SCORE);
+		Observer::AddScore(score_);
 		return;
 	}
 

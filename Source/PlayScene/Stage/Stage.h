@@ -8,6 +8,22 @@ public:
 	~Stage();
 
 private:
+	enum DATA_NUM {
+		OBJECT,
+		NUMBER,
+		POSITION_X,
+		POSITION_Y,
+		POSITION_Z,
+		ROTATION_X,
+		ROTATION_Y,
+		ROTATION_Z,
+		SCALE_X,
+		SCALE_Y,
+		SCALE_Z,
+		HP,
+		SCORE,
+		MAX_DATA
+	};
 	void ReadMappingData(std::string filename);
 };
 
