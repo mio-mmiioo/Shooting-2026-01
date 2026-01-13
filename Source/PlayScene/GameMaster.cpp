@@ -36,14 +36,14 @@ void GameMaster::Init()
 
 void GameMaster::Update()
 {
+	Light::Update();
+	player = FindGameObject<Player>();
+	stage = FindGameObject<Stage>();
+
 	if (player->GetHP() < 0)
 	{
 		SceneManager::ChangeScene("RESULT");
 	}
-
-	Light::Update();
-	player = FindGameObject<Player>();
-	stage = FindGameObject<Stage>();
 
 	// ŠJ”­ŽžŠÖ˜A
 	{

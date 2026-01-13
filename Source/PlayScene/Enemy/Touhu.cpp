@@ -58,6 +58,8 @@ Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
 	goPosition_ = transform_.position_;
 	objectNumber_ = OBJECT_SORT::OBJ_CHARA;
 	state_ = Enemy::E_STATE::STAY;
+	stayTimer_ = 0.0f;
+	isArrive_ = true;
 }
 
 Touhu::~Touhu()
