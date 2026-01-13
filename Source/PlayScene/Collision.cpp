@@ -64,12 +64,19 @@ void Collision::AttackedObject(int num)
 	}
 }
 
-void Collision::SetOnGround(Object3D* obj, float* velocityY)
+void Collision::SetOnGround(Object3D* obj, float* velocityY, const float gravity)
 {
 	VECTOR3 hit;
 	VECTOR3 p = obj->GetTransform().position_;
+	
+	// d—Í‚ð‰Á‚¦‚é
+	p.y -= *velocityY;
+	*velocityY += gravity;
+	obj->SetPosition(p);
+
 	VECTOR3 pos1 = p + CHECK_ONGROUND_LENGTH;
 	VECTOR3 pos2 = p - CHECK_ONGROUND_LENGTH;
+	
 	for (Object3D* o : allObjectList)
 	{
 		if (obj == o)

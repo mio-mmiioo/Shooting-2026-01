@@ -4,8 +4,8 @@
 namespace Enemy
 {
 	enum E_SORT {
-		TOUHU_1,
-		TOUHU_2,
+		STONE,
+		TOUHU,
 		MAX_E_SORT
 	};
 

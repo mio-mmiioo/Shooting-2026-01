@@ -104,11 +104,7 @@ void Player::Update()
 		}
 	}
 
-	// d—Í‚ð‰Á‚¦‚é
-	transform_.position_.y -= velocityY_;
-	velocityY_ += gravity_;
-
-	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_);
+	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_, gravity_);
 
 	camera_->SetPlayerPosition(transform_);
 	Light::SetPosition(transform_.position_);

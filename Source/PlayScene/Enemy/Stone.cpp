@@ -1,12 +1,12 @@
-#include "Touhu.h"
+#include "Stone.h"
+#include <assert.h>
 #include "../../../ImGui/imgui.h"
 #include "../../MyLibrary/Observer.h"
 #include "../GameMaster.h"
 #include "../Collision.h"
 #include "Enemy.h"
-#include <assert.h>
 
-namespace TOUHU
+namespace STONE
 {
 	const float G = 0.05f;
 
@@ -21,14 +21,14 @@ namespace TOUHU
 	// 攻撃関連
 	const float ATTACK_TIME = 6.0f;
 	const int ATTACK_POWER = 2;
-	
+
 	// 開発時のみ使用
 	const float DIRECTION_LENGTH = 100.0f;
 	const float POS_LIST_R = 50.0f;
 	const int POS_LIST_DIV_NUM = 50;
 }
 
-Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
+Stone::Stone(const std::string& fileName, const Transform& t, int hp, int score)
 {
 	const std::string folder = "data/model/";
 	hModel_ = MV1LoadModel((folder + fileName + ".mv1").c_str());
@@ -41,16 +41,16 @@ Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
 	score_ = score;
 
 	time_ = 0.0f;
-	gravity_ = TOUHU::G;
-	distanceR_ = TOUHU::DISTANCE_R;
+	gravity_ = STONE::G;
+	distanceR_ = STONE::DISTANCE_R;
 
 
 	transform_.MakeLocalMatrix();
 	MV1SetMatrix(hitModel_, transform_.GetLocalMatrix());
 	MV1SetupCollInfo(hitModel_);
 
-	rotateSpeed_ = TOUHU::ROTATE_SPEED;
-	moveSpeed_ = TOUHU::MOVE_SPEED;
+	rotateSpeed_ = STONE::ROTATE_SPEED;
+	moveSpeed_ = STONE::MOVE_SPEED;
 
 	Collision::AddObject(this);
 
@@ -58,7 +58,7 @@ Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
 	state_ = Enemy::E_STATE::STAY;
 }
 
-Touhu::~Touhu()
+Stone::~Stone()
 {
 	if (hModel_ > 0)
 	{
@@ -70,7 +70,7 @@ Touhu::~Touhu()
 	}
 }
 
-void Touhu::Update()
+void Stone::Update()
 {
 	// 体力が0の場合の処理
 	if (hp_ <= 0)
@@ -85,34 +85,27 @@ void Touhu::Update()
 	case Enemy::E_STATE::STAY:
 		UpdateStay();
 		break;
-	case Enemy::E_STATE::WALK:
-		UpdateWalk();
-		break;
 	}
 
 	DevelopmentInput();
-
+	
 	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_, gravity_);
 
-
-	// 位置情報の更新
-	
 	MV1SetMatrix(hitModel_, transform_.GetLocalMatrix());
 	MV1RefreshCollInfo(hitModel_);
 }
 
-void Touhu::Draw()
+void Stone::Draw()
 {
 	Object3D::Draw();
 }
 
-void Touhu::DevelopmentInput()
+void Stone::DevelopmentInput()
 {
 	int s = state_;
-	ImGui::Begin("Touhu");
+	ImGui::Begin("Stone");
 
 	ImGui::RadioButton("Stay", &s, Enemy::E_STATE::STAY);
-	ImGui::RadioButton("Walk", &s, Enemy::E_STATE::WALK);
 
 	Enemy::DevelopmentInput(transform_);
 
@@ -121,9 +114,6 @@ void Touhu::DevelopmentInput()
 	case Enemy::E_STATE::STAY:
 		state_ = Enemy::E_STATE::STAY;
 		break;
-	case Enemy::E_STATE::WALK:
-		state_ = Enemy::E_STATE::WALK;
-		break;
 	}
 
 	ImGui::End();
@@ -131,11 +121,6 @@ void Touhu::DevelopmentInput()
 	transform_.MakeLocalMatrix();
 }
 
-void Touhu::UpdateStay()
-{
-	transform_.rotation_.y += rotateSpeed_ * DegToRad;
-}
-
-void Touhu::UpdateWalk()
+void Stone::UpdateStay()
 {
 }

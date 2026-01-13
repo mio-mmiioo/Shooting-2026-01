@@ -6,6 +6,7 @@
 #include <assert.h>
 
 // 各敵のヘッダーファイル
+#include "Stone.h"
 #include "Touhu.h"
 
 void Enemy::DevelopmentInput(Transform& t)
@@ -33,10 +34,10 @@ void Enemy::CreateEnemy(int enemyNumber, const std::string& fileName, const Tran
 {
 	switch (enemyNumber)
 	{
-	case E_SORT::TOUHU_1:
-		new Touhu(fileName, t, hp, score);
+	case E_SORT::STONE:
+		new Stone(fileName, t, hp, score);
 		break;
-	case E_SORT::TOUHU_2:
+	case E_SORT::TOUHU:
 		new Touhu(fileName, t, hp, score);
 		break;
 	}
