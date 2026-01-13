@@ -56,6 +56,15 @@ bool Collision::CheckHitObject(VECTOR3 pos1, VECTOR3 pos2, VECTOR3* hit)
 	return found;
 }
 
+bool Collision::CheckDistanceVertexAndVertex(VECTOR3 pos1, VECTOR3 pos2, float distance)
+{
+	if (VSize(pos1 - pos2) < distance)
+	{
+		return true;
+	}
+	return false;
+}
+
 void Collision::AttackedObject(int num)
 {
 	if (checkObject != nullptr)

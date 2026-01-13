@@ -17,6 +17,7 @@ namespace Enemy
 	};
 
 	void DevelopmentInput(Transform& t); // 開発時のみ使用する入力処理
+	VECTOR3 GetMoveToPlayerPosition(VECTOR3 position); // プレイヤーの方へ移動する
 	void CreateEnemy(int enemyNumber, const std::string& fileName, const Transform& t, int hp, int score);
 };
 

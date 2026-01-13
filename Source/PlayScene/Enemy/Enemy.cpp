@@ -1,6 +1,7 @@
 #include "Enemy.h"
 #include "../../../ImGui/imgui.h"
 #include "../../MyLibrary/Observer.h"
+#include "../Stage/WayInfo.h"
 #include "../GameMaster.h"
 #include "../Collision.h"
 #include <assert.h>
@@ -28,6 +29,13 @@ void Enemy::DevelopmentInput(Transform& t)
 	ImGui::InputFloat("scale:z", &t.scale_.z);
 
 	//ImGui::End();
+}
+
+VECTOR3 Enemy::GetMoveToPlayerPosition(VECTOR3 position)
+{
+	VECTOR3 playerPosition = GameMaster::GetPlayerPosition();
+	VECTOR3 ret = WayInfo::GetShortestWayPosition(position, playerPosition);
+	return ret;
 }
 
 void Enemy::CreateEnemy(int enemyNumber, const std::string& fileName, const Transform& t, int hp, int score)

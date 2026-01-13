@@ -16,4 +16,5 @@ private:
 	void UpdateWalk(); // Moveó‘Ô‚Ì‚ÌXVˆ—
 	Enemy::E_STATE state_; // ó‘Ô
 	bool isArrive_; // “’…‚µ‚½‚© true¨“’…‚µ‚½
+	VECTOR3 goPosition_; // Ÿ‚ÉŒü‚©‚¤êŠ
 };

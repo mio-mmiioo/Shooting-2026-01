@@ -54,6 +54,7 @@ Touhu::Touhu(const std::string& fileName, const Transform& t, int hp, int score)
 
 	Collision::AddObject(this);
 
+	goPosition_ = transform_.position_;
 	objectNumber_ = OBJECT_SORT::OBJ_CHARA;
 	state_ = Enemy::E_STATE::STAY;
 }
@@ -133,9 +134,22 @@ void Touhu::DevelopmentInput()
 
 void Touhu::UpdateStay()
 {
-	transform_.rotation_.y += rotateSpeed_ * DegToRad;
+	//transform_.rotation_.y += rotateSpeed_ * DegToRad;
 }
 
 void Touhu::UpdateWalk()
 {
+	if (isArrive_ == true)
+	{
+		goPosition_ = Enemy::GetMoveToPlayerPosition(transform_.position_);
+		isArrive_ = false;
+	}
+	else
+	{
+		SetMove(goPosition_);
+		if (Collision::CheckDistanceVertexAndVertex(transform_.position_, goPosition_, TOUHU::DISTANCE_R) == true)
+		{
+			isArrive_ = true;
+		}
+	}
 }

@@ -12,6 +12,7 @@
 namespace GameMaster
 {
 	void DevelopmentInput(); // ImGuiで、開発時のみ使用する処理
+	void PlayerUpdate(); // GameMaster内で処理したいPlayerのUpdateの内容
 
 	// 開発時のみ使用
 	const float CHECK_FRONT_LENGTH = 100.0f;
@@ -20,6 +21,7 @@ namespace GameMaster
 	Player* player = nullptr;
 	Stage* stage = nullptr;
 
+	VECTOR3 playerPosition;
 	bool isCreateEnemy; // 敵を作成するか true → 作成する
 }
 
@@ -47,6 +49,8 @@ void GameMaster::Update()
 			isCreateEnemy = false;
 		}
 	}
+
+	PlayerUpdate();
 
 	if (player->GetIsAttack() == true)
 	{
@@ -85,6 +89,11 @@ void GameMaster::CheckSetPosition(Object3D* obj, float* velocityY, float distanc
 	Collision::SetOnGround(obj, velocityY, gravity); // ステージの位置を確認し、空中に浮いていないか確認する 浮いていたら重力をかける
 }
 
+VECTOR3 GameMaster::GetPlayerPosition()
+{
+	return playerPosition;
+}
+
 void GameMaster::DevelopmentInput()
 {
 	ImGui::Begin("GameMaster");
@@ -93,4 +102,13 @@ void GameMaster::DevelopmentInput()
 		isCreateEnemy = true;
 	}
 	ImGui::End();
+}
+
+void GameMaster::PlayerUpdate()
+{
+	VECTOR3 p = player->GetTransform().position_;
+	if (WayInfo::IsVertexPosition(p))
+	{
+		playerPosition = p;
+	}
 }
