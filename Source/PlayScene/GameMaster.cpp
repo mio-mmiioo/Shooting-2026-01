@@ -1,28 +1,32 @@
 #include "GameMaster.h"
-#include "Player.h"
-#include "Stage/Stage.h"
-#include "Stage/WayInfo.h"
-
+#include "../../ImGui/imgui.h"
 #include "../MyLibrary/Light.h"
 //#include "../MyLibrary/Shadow.h"
 
+#include "Stage/Stage.h"
+#include "Stage/WayInfo.h"
+
+#include "Player.h"
 #include "Collision.h"
 
 namespace GameMaster
 {
-	// 開発時のみ仕様
+	void DevelopmentInput(); // ImGuiで、開発時のみ使用する処理
+
+	// 開発時のみ使用
 	const float CHECK_FRONT_LENGTH = 100.0f;
 	const float CHECK_BACK_LENGTH = 100.0f;
 
-
 	Player* player = nullptr;
 	Stage* stage = nullptr;
+
+	bool isCreateEnemy; // 敵を作成するか true → 作成する
 }
 
 void GameMaster::Init()
 {
 	WayInfo::Init();
-	new Stage(11); // 建物だけのステージ
+	new Stage(12); // 建物だけのステージ
 	Light::Init();
 	//Shadow::Init(); // Stageの後に処理する
 }
@@ -32,6 +36,17 @@ void GameMaster::Update()
 	Light::Update();
 	player = FindGameObject<Player>();
 	stage = FindGameObject<Stage>();
+
+	// 開発時関連
+	{
+		DevelopmentInput();
+
+		if (isCreateEnemy == true)
+		{
+			new Stage(13);
+			isCreateEnemy = false;
+		}
+	}
 
 	if (player->GetIsAttack() == true)
 	{
@@ -68,4 +83,14 @@ void GameMaster::CheckSetPosition(Object3D* obj, float* velocityY, float distanc
 	Collision::CheckPush(obj, t.position_, front, distanceR); // ステージへのめり込みを確認する(前方)
 	Collision::CheckPush(obj, t.position_, back, distanceR);  // ステージへのめり込みを確認する(後方)
 	Collision::SetOnGround(obj, velocityY); // ステージの位置を確認し、空中に浮いていないか確認する 浮いていたら重力をかける
+}
+
+void GameMaster::DevelopmentInput()
+{
+	ImGui::Begin("GameMaster");
+	if (ImGui::Button("CreateEnemy"))
+	{
+		isCreateEnemy = true;
+	}
+	ImGui::End();
 }

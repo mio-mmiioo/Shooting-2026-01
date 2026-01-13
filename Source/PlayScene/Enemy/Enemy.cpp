@@ -33,6 +33,9 @@ void Enemy::CreateEnemy(int enemyNumber, const std::string& fileName, const Tran
 {
 	switch (enemyNumber)
 	{
+	case E_SORT::TOUHU_1:
+		new Touhu(fileName, t, hp, score);
+		break;
 	case E_SORT::TOUHU_2:
 		new Touhu(fileName, t, hp, score);
 		break;

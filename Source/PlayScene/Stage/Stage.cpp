@@ -7,6 +7,7 @@
 
 namespace STAGE
 {
+	const VECTOR3 ADD_POSITION = { -5000.0f, 0.0f, -5000.0f };
 	const float CHECK_ONGROUND_LENGTH = 500.0f;
 	const int DATA_SIZE = 16;
 }
@@ -37,6 +38,7 @@ void Stage::ReadMappingData(std::string filename)
 		t.position_.x = csv->GetFloat(line, DATA_NUM::POSITION_X);
 		t.position_.y = csv->GetFloat(line, DATA_NUM::POSITION_Y);
 		t.position_.z = csv->GetFloat(line, DATA_NUM::POSITION_Z);
+		t.position_ += STAGE::ADD_POSITION;
 		hp = csv->GetInt(line, DATA_NUM::HP);
 
 		if (sortNumber == OBJECT_SORT::OBJ_PLAYER) {

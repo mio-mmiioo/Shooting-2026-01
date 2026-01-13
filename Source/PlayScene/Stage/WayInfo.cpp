@@ -203,7 +203,7 @@ VECTOR3 WayInfo::GetShortestWayPosition(VECTOR3 currentPos, VECTOR3 goalPos)
 void WayInfo::InitWayData()
 {
 	char filename[FILE_DATA_SIZE];
-	sprintf_s<FILE_DATA_SIZE >(filename, "data/stage/wayInfo/wayInfo%02d.csv", 0);
+	sprintf_s<FILE_DATA_SIZE >(filename, "data/stage/wayInfo/wayInfo%02d.csv", 1);
 	wayInfo_.clear();
 
 	// ステージデータの読み込み

@@ -11,7 +11,7 @@ namespace Light {
 	const float ATTEN1 = 0.003f;
 	const float ATTEN2 = 0.0f;
 
-	VECTOR3 lightPosition = INIT_LIGHT_POSITION + (LOOK_HEIGHT * 0.5f);
+	VECTOR3 lightPosition = INIT_LIGHT_POSITION + (LOOK_HEIGHT / 2.0f);
 	float range = RANGE;
 	float atten0 = ATTEN0;
 	float atten1 = ATTEN1;
@@ -54,5 +54,5 @@ VECTOR Light::GetLightDirection()
 
 void Light::SetPosition(VECTOR position)
 {
-	lightPosition = position + LOOK_HEIGHT;
+	lightPosition = position + (LOOK_HEIGHT / 2.0f) ;
 }
