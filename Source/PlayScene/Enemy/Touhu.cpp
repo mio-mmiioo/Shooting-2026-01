@@ -135,7 +135,7 @@ void Touhu::DevelopmentInput()
 
 	ImGui::RadioButton("Stay", &s, Enemy::E_STATE::STAY);
 	ImGui::RadioButton("Walk", &s, Enemy::E_STATE::WALK);
-
+	ImGui::RadioButton("Attack", &s, Enemy::E_STATE::ATTACK);
 	Enemy::DevelopmentInput(transform_);
 
 	switch (s)
@@ -145,6 +145,9 @@ void Touhu::DevelopmentInput()
 		break;
 	case Enemy::E_STATE::WALK:
 		state_ = Enemy::E_STATE::WALK;
+		break;
+	case Enemy::E_STATE::ATTACK:
+		state_ = Enemy::E_STATE::ATTACK;
 		break;
 	}
 

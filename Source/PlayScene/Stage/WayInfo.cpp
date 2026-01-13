@@ -10,7 +10,7 @@ struct point {
 struct vertex {
 	point position = { 0, 0 };	// 位置情報
 	int distance = -1;			// 距離
-	int number = -1;
+	int number = -1;			// 識別番号
 	bool isDicision = false;	// 決定しているか
 	std::vector<vertex> next;	// つながってる頂点リスト
 	std::vector<point> posList; // 最短経路の道情報
@@ -54,8 +54,11 @@ namespace WayInfo {
 
 	const int MAX_DISTANCE = 5000; // 各頂点のコストの初期化に使用
 	const VECTOR3 ADD_WAY_INFO_POS = { 5000.0f, 0.0f, 5000.0f }; // 中心を0にするために加える数
+	const float ADD_DRAW_WAY_HEIGHT = 5.0f; // 道情報の描画の高さ
 	const VECTOR3 ADD_HALF_BOX_POS = { (float)(BOX_SIZE / 2), 0.0f, (float)(BOX_SIZE / 2) };
 	const int FILE_DATA_SIZE = 64; // ファイル名に使用するデータのサイズ
+	const float SPHERE_R = 40.0f;
+	const int DIV_NUM = 20;
 	
 	point dir_[4]; // 方向
 	std::vector<std::vector<int>> wayInfo_;	// 通れる場所の情報
@@ -87,10 +90,10 @@ void WayInfo::WayDraw()
 	{
 		for (int x = 0; x < wayInfo_[y].size(); x++)
 		{
-			VECTOR3 topLeft = VECTOR3(y * (float)BOX_SIZE, 5.0f, x * (float)BOX_SIZE) - ADD_WAY_INFO_POS;
-			VECTOR3 topRight = VECTOR3(y * (float)BOX_SIZE + (float)BOX_SIZE, 5.0f, x * (float)BOX_SIZE) - ADD_WAY_INFO_POS;
-			VECTOR3 downLeft = VECTOR3(y * (float)BOX_SIZE, 5.0f, x * (float)BOX_SIZE + (float)BOX_SIZE) - ADD_WAY_INFO_POS;
-			VECTOR3 downRight = VECTOR3(y * (float)BOX_SIZE + (float)BOX_SIZE, 5.0f, x * (float)BOX_SIZE + (float)BOX_SIZE) - ADD_WAY_INFO_POS;
+			VECTOR3 topLeft = VECTOR3(y * (float)BOX_SIZE, ADD_DRAW_WAY_HEIGHT, x * (float)BOX_SIZE) - ADD_WAY_INFO_POS;
+			VECTOR3 topRight = VECTOR3(y * (float)BOX_SIZE + (float)BOX_SIZE, ADD_DRAW_WAY_HEIGHT, x * (float)BOX_SIZE) - ADD_WAY_INFO_POS;
+			VECTOR3 downLeft = VECTOR3(y * (float)BOX_SIZE, ADD_DRAW_WAY_HEIGHT, x * (float)BOX_SIZE + (float)BOX_SIZE) - ADD_WAY_INFO_POS;
+			VECTOR3 downRight = VECTOR3(y * (float)BOX_SIZE + (float)BOX_SIZE, ADD_DRAW_WAY_HEIGHT, x * (float)BOX_SIZE + (float)BOX_SIZE) - ADD_WAY_INFO_POS;
 
 			if (wayInfo_[x][y] == MAP_NUM::EMPTY)
 			{
@@ -116,7 +119,7 @@ void WayInfo::WayDraw()
 
 void WayInfo::DrawVertex()
 {
-	DrawSphere3D(ADD_WAY_INFO_POS * -1.0f, 40, 20, Color::WHITE, Color::WHITE, TRUE);
+	DrawSphere3D(ADD_WAY_INFO_POS * -1.0f, SPHERE_R, DIV_NUM, Color::WHITE, Color::WHITE, TRUE);
 	VECTOR3 pos;
 	int color = 0;
 	for (vertex& v : vertexList_)
@@ -131,7 +134,7 @@ void WayInfo::DrawVertex()
 			color = Color::BLACK;
 		}
 
-		DrawSphere3D(pos - ADD_WAY_INFO_POS + ADD_HALF_BOX_POS, 40, 20, color, color, TRUE);
+		DrawSphere3D(pos - ADD_WAY_INFO_POS + ADD_HALF_BOX_POS, SPHERE_R, DIV_NUM, color, color, TRUE);
 
 	}
 }
