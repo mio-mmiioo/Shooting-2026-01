@@ -21,6 +21,7 @@ public:
 
 	bool GetIsAttack() { return isAttack_; } // ƒvƒŒƒCƒ„[‚ªUŒ‚‚ğ‚µ‚Ä‚¢‚é‚© true¨UŒ‚‚µ‚Ä‚¢‚é
 	int GetAttackPower(); // e’eˆê”­‚ÌUŒ‚—Í‚ğ•Ô‚·
+	int GetHP() { return hp_; } // hp‚ğ•Ô‚·
 
 private:
 	void DevelopmentInput();					// ŠJ”­‚Ì‚İg—p

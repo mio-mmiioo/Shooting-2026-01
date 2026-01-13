@@ -12,4 +12,5 @@ namespace GameMaster
 	void CheckSetPosition(Object3D* obj, float* velocityY, float distanceR, float gravity); // ˆÊ’u‚âd—Í‚Ì’²®
 
 	VECTOR3 GetPlayerPosition();
+	void AttackPlayer(int attackPower);
 }

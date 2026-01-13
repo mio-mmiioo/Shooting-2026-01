@@ -25,6 +25,7 @@ Player::Player(const VECTOR3& position, int hp)
 {
 	objectNumber_ = OBJECT_SORT::OBJ_PLAYER;
 	transform_.position_ = position;
+	hp_ = hp;
 	hModel_ = MV1LoadModel("data/model/player.mv1");
 	assert(hModel_ > 0);
 	hitModel_ = MV1LoadModel("data/model/player_c.mv1");
@@ -166,6 +167,8 @@ void Player::DevelopmentInput()
 		ImGui::Text("rotation");
 		float r[3] = { t.rotation_.x, t.rotation_.y, t.rotation_.z };
 		ImGui::SliderFloat3("rotation", r, -DX_PI_F, DX_PI_F);
+
+		ImGui::Text("HP:%d", hp_);
 
 		ImGui::End();
 

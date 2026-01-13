@@ -1,6 +1,7 @@
 #include "Touhu.h"
 #include "../../../ImGui/imgui.h"
 #include "../../MyLibrary/Observer.h"
+#include "../../MyLibrary/Color.h"
 #include "../GameMaster.h"
 #include "../Collision.h"
 #include "Enemy.h"
@@ -19,7 +20,7 @@ namespace TOUHU
 	int headshotBonus = 2;
 
 	// 攻撃関連
-	const float ATTACK_TIME = 6.0f;
+	const float STAY_TIME = 6.0f;
 	const int ATTACK_POWER = 2;
 	
 	// 開発時のみ使用
@@ -84,10 +85,24 @@ void Touhu::Update()
 	switch (state_)
 	{
 	case Enemy::E_STATE::STAY:
-		UpdateStay();
+		Enemy::StayUpdate(Enemy::E_SORT::TOUHU, transform_.position_, &state_, Enemy::E_STATE::WALK);
+		stayTimer_ += Time::DeltaTime();
+		if (stayTimer_ > TOUHU::STAY_TIME)
+		{
+			stayTimer_ -= TOUHU::STAY_TIME;
+			state_ = Enemy::E_STATE::ATTACK;
+		}
 		break;
 	case Enemy::E_STATE::WALK:
-		UpdateWalk();
+		Enemy::WalkUpdate(Enemy::E_SORT::TOUHU, &isArrive_, &goPosition_, &transform_.position_, &state_, Enemy::E_STATE::STAY);
+		if (isArrive_ == false)
+		{
+			SetMove(goPosition_);
+		}
+		break;
+	case Enemy::E_STATE::ATTACK:
+		GameMaster::AttackPlayer(TOUHU::ATTACK_POWER);
+		state_ = Enemy::E_STATE::STAY;
 		break;
 	}
 
@@ -105,6 +120,10 @@ void Touhu::Update()
 void Touhu::Draw()
 {
 	Object3D::Draw();
+
+	// 向いている方向
+	DrawLine3D(transform_.position_ + LOOK_HEIGHT,
+		transform_.position_ + LOOK_HEIGHT + VECTOR3(0, 0, 1) * TOUHU::DIRECTION_LENGTH * MGetRotY(transform_.rotation_.y), Color::BLACK);
 }
 
 void Touhu::DevelopmentInput()
@@ -132,24 +151,3 @@ void Touhu::DevelopmentInput()
 	transform_.MakeLocalMatrix();
 }
 
-void Touhu::UpdateStay()
-{
-	//transform_.rotation_.y += rotateSpeed_ * DegToRad;
-}
-
-void Touhu::UpdateWalk()
-{
-	if (isArrive_ == true)
-	{
-		goPosition_ = Enemy::GetMoveToPlayerPosition(transform_.position_);
-		isArrive_ = false;
-	}
-	else
-	{
-		SetMove(goPosition_);
-		if (Collision::CheckDistanceVertexAndVertex(transform_.position_, goPosition_, TOUHU::DISTANCE_R) == true)
-		{
-			isArrive_ = true;
-		}
-	}
-}

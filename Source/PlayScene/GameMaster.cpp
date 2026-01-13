@@ -5,7 +5,7 @@
 
 #include "Stage/Stage.h"
 #include "Stage/WayInfo.h"
-
+#include "Enemy/Enemy.h"
 #include "Player.h"
 #include "Collision.h"
 
@@ -29,12 +29,18 @@ void GameMaster::Init()
 {
 	WayInfo::Init();
 	new Stage(12); // 建物だけのステージ
+	Enemy::Init();
 	Light::Init();
 	//Shadow::Init(); // Stageの後に処理する
 }
 
 void GameMaster::Update()
 {
+	if (player->GetHP() < 0)
+	{
+		SceneManager::ChangeScene("RESULT");
+	}
+
 	Light::Update();
 	player = FindGameObject<Player>();
 	stage = FindGameObject<Stage>();
@@ -92,6 +98,11 @@ void GameMaster::CheckSetPosition(Object3D* obj, float* velocityY, float distanc
 VECTOR3 GameMaster::GetPlayerPosition()
 {
 	return playerPosition;
+}
+
+void GameMaster::AttackPlayer(int attackPower)
+{
+	player->AddHp(-attackPower);
 }
 
 void GameMaster::DevelopmentInput()
