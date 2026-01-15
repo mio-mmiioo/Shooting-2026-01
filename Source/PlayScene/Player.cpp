@@ -5,6 +5,7 @@
 #include "../MyLibrary/Light.h"
 #include "../MyLibrary/Color.h"
 #include "Camera.h"
+#include "HP.h"
 #include "GameMaster.h"
 
 namespace PLAYER
@@ -39,15 +40,16 @@ Player::Player(const VECTOR3& position, int hp)
 	MV1SetupCollInfo(hModel_);
 
 	// è∆èÄ(aiming)
-	SetImage(aiming_, "data/image/pointer1.png");
-	SetImage(hitAiming_, "data/image/pointer2.png");
-	SetImage(reload_, "data/image/reload.png");
+	SetAimingImage(aiming_, "data/image/pointer1.png");
+	SetAimingImage(hitAiming_, "data/image/pointer2.png");
+	SetAimingImage(reload_, "data/image/reload.png");
 
 	rotateSpeed_ = PLAYER::ROTATE_SPEED;
 	moveSpeed_ = PLAYER::MOVE_SPEED;
 	
 	camera_ = FindGameObject<Camera>();
 	gun_ = new Gun();
+	playerHp_ = new HP(hp_);
 	currentGun_ = GUN::TYPE::HAND; 
 	gun_->SetGunType(currentGun_); // égópÇ∑ÇÈèeÇÃéÌóﬁÇÉZÉbÉg
 
@@ -105,6 +107,8 @@ void Player::Update()
 		}
 	}
 
+	playerHp_->Update();
+
 	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_, gravity_);
 
 	camera_->SetPlayerPosition(transform_);
@@ -125,6 +129,7 @@ void Player::Draw()
 	DrawLine3D(transform_.position_ + addPlayerHeight, transform_.position_ + addPlayerHeight + VECTOR3(0, 0, 1) * PLAYER::DIRECTION_LENGTH * transform_.GetRotationMatrix(), Color::WHITE);
 
 	// 2DÇÃï`âÊ
+	playerHp_->Draw();
 
 	// è∆èÄÇÃï`âÊ
 	if (isHit_ == true)
@@ -205,7 +210,7 @@ void Player::DevelopmentInput()
 	}
 }
 
-void Player::SetImage(image& i, std::string path)
+void Player::SetAimingImage(image& i, std::string path)
 {
 	i.hImage = LoadGraph(path.c_str());
 	assert(i.hImage > 0);

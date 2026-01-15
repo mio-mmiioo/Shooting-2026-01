@@ -89,7 +89,6 @@
     <ClCompile Include="Source\MyLibrary\Shadow.cpp">
       <Filter>MyLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene\Gun.cpp" />
     <ClCompile Include="Source\MyLibrary\Observer.cpp" />
     <ClCompile Include="Source\ResultScene\Result.cpp" />
     <ClCompile Include="Source\PlayScene\Enemy\Enemy.cpp">
@@ -97,6 +96,16 @@
     </ClCompile>
     <ClCompile Include="Source\PlayScene\Enemy\Touhu.cpp">
       <Filter>PlayScene\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayScene\Enemy\Stone.cpp" />
+    <ClCompile Include="Source\PlayScene\Gun.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayScene\HP.cpp">
+      <Filter>PlayScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyLibrary\Object2D.cpp">
+      <Filter>MyLibrary</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +213,6 @@
     <ClInclude Include="Source\MyLibrary\Shadow.h">
       <Filter>MyLibrary</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayScene\Gun.h" />
     <ClInclude Include="Source\MyLibrary\Observer.h" />
     <ClInclude Include="Source\ResultScene\Result.h" />
     <ClInclude Include="Source\PlayScene\Enemy\Enemy.h">
@@ -212,6 +220,16 @@
     </ClInclude>
     <ClInclude Include="Source\PlayScene\Enemy\Touhu.h">
       <Filter>PlayScene\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayScene\Enemy\Stone.h" />
+    <ClInclude Include="Source\PlayScene\Gun.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayScene\HP.h">
+      <Filter>PlayScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Object2D.h">
+      <Filter>MyLibrary</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

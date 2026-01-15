@@ -3,6 +3,7 @@
 #include "Gun.h"
 
 class Camera;
+class HP;
 
 struct image
 {
@@ -25,10 +26,11 @@ public:
 
 private:
 	void DevelopmentInput();					// 開発時のみ使用
-	void SetImage(image& i, std::string path);	// 画像のセット
+	void SetAimingImage(image& i, std::string path);	// 画像のセット
 
 	Camera* camera_;
 	Gun* gun_;
+	HP* playerHp_;
 
 	int mouseX_;				// マウスのx座標
 	int mouseY_;				// マウスのy座標

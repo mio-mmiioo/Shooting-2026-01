@@ -157,6 +157,7 @@
     <ClInclude Include="Source\MyLibrary\CsvReader.h" />
     <ClInclude Include="Source\MyLibrary\Input.h" />
     <ClInclude Include="Source\MyLibrary\Light.h" />
+    <ClInclude Include="Source\MyLibrary\Object2D.h" />
     <ClInclude Include="Source\MyLibrary\Object3D.h" />
     <ClInclude Include="Source\MyLibrary\Observer.h" />
     <ClInclude Include="Source\MyLibrary\Shadow.h" />
@@ -167,6 +168,7 @@
     <ClInclude Include="Source\PlayScene\Enemy\Touhu.h" />
     <ClInclude Include="Source\PlayScene\GameMaster.h" />
     <ClInclude Include="Source\PlayScene\Gun.h" />
+    <ClInclude Include="Source\PlayScene\HP.h" />
     <ClInclude Include="Source\PlayScene\Player.h" />
     <ClInclude Include="Source\PlayScene\PlayScene.h" />
     <ClInclude Include="Source\PlayScene\Stage\Stage.h" />
@@ -196,6 +198,7 @@
     <ClCompile Include="Source\MyLibrary\CsvReader.cpp" />
     <ClCompile Include="Source\MyLibrary\Input.cpp" />
     <ClCompile Include="Source\MyLibrary\Light.cpp" />
+    <ClCompile Include="Source\MyLibrary\Object2D.cpp" />
     <ClCompile Include="Source\MyLibrary\Object3D.cpp" />
     <ClCompile Include="Source\MyLibrary\Observer.cpp" />
     <ClCompile Include="Source\MyLibrary\Shadow.cpp" />
@@ -206,6 +209,7 @@
     <ClCompile Include="Source\PlayScene\Enemy\Touhu.cpp" />
     <ClCompile Include="Source\PlayScene\GameMaster.cpp" />
     <ClCompile Include="Source\PlayScene\Gun.cpp" />
+    <ClCompile Include="Source\PlayScene\HP.cpp" />
     <ClCompile Include="Source\PlayScene\Player.cpp" />
     <ClCompile Include="Source\PlayScene\PlayScene.cpp" />
     <ClCompile Include="Source\PlayScene\Stage\Stage.cpp" />
