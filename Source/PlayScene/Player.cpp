@@ -49,7 +49,7 @@ Player::Player(const VECTOR3& position, int hp)
 	
 	camera_ = FindGameObject<Camera>();
 	gun_ = new Gun();
-	playerHp_ = new HP(hp_);
+	HP_ = new HP(hp);
 	currentGun_ = GUN::TYPE::HAND; 
 	gun_->SetGunType(currentGun_); // Žg—p‚·‚ée‚ÌŽí—Þ‚ðƒZƒbƒg
 
@@ -107,7 +107,7 @@ void Player::Update()
 		}
 	}
 
-	playerHp_->Update();
+	HP_->Update();
 
 	GameMaster::CheckSetPosition(this, &velocityY_, distanceR_, gravity_);
 
@@ -129,7 +129,7 @@ void Player::Draw()
 	DrawLine3D(transform_.position_ + addPlayerHeight, transform_.position_ + addPlayerHeight + VECTOR3(0, 0, 1) * PLAYER::DIRECTION_LENGTH * transform_.GetRotationMatrix(), Color::WHITE);
 
 	// 2D‚Ì•`‰æ
-	playerHp_->Draw();
+	HP_->Draw();
 
 	// Æ€‚Ì•`‰æ
 	if (isHit_ == true)
@@ -146,6 +146,11 @@ void Player::Draw()
 		float rate = (gun_->GetReloadTime() - gun_->GetReloadTimer()) / gun_->GetReloadTime() * 100; // (max‚ÌŽžŠÔ - Žc‚èŽžŠÔ) / max‚ÌŽžŠÔ * 100 = ZZ%
 		DrawCircleGauge(mouseX_, mouseY_, 100.0, reload_.hImage, rate);
 	}
+}
+
+void Player::AddHp(int add)
+{
+	HP_->AddHP(add);
 }
 
 int Player::GetAttackPower()
@@ -173,7 +178,7 @@ void Player::DevelopmentInput()
 		float r[3] = { t.rotation_.x, t.rotation_.y, t.rotation_.z };
 		ImGui::SliderFloat3("rotation", r, -DX_PI_F, DX_PI_F);
 
-		ImGui::Text("HP:%d", hp_);
+		ImGui::Text("HP:%d", HP_->GetHP());
 
 		ImGui::End();
 

@@ -7,6 +7,7 @@
 #include "Stage/WayInfo.h"
 #include "Enemy/Enemy.h"
 #include "Player.h"
+#include "HP.h"
 #include "Collision.h"
 
 namespace GameMaster
@@ -40,7 +41,7 @@ void GameMaster::Update()
 	player = FindGameObject<Player>();
 	stage = FindGameObject<Stage>();
 
-	if (player->GetHP() < 0)
+	if (player->HP_->GetHP() < 0)
 	{
 		SceneManager::ChangeScene("RESULT");
 	}

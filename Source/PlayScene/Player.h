@@ -19,10 +19,12 @@ public:
 	~Player() override;
 	void Update() override;
 	void Draw() override;
+	void AddHp(int add) override;
 
 	bool GetIsAttack() { return isAttack_; } // プレイヤーが攻撃をしているか true→攻撃している
 	int GetAttackPower(); // 銃弾一発の攻撃力を返す
 	int GetHP() { return hp_; } // hpを返す
+	HP* HP_;
 
 private:
 	void DevelopmentInput();					// 開発時のみ使用
@@ -30,7 +32,7 @@ private:
 
 	Camera* camera_;
 	Gun* gun_;
-	HP* playerHp_;
+	
 
 	int mouseX_;				// マウスのx座標
 	int mouseY_;				// マウスのy座標

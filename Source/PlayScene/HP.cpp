@@ -2,8 +2,8 @@
 #include <assert.h>
 
 namespace {
-	const VECTOR2 LEFT_TOP = { 20, 20 };
-	const int IMAGE_WIDTH = 400;
+	const VECTOR2 LEFT_TOP = { 20, 20 }; // 左上の座標
+	const int IMAGE_WIDTH = 400; // 画像のサイズ
 	const int IMAGE_HEIGHT = 43;
 	const float DAMAGE_TIME = 1.5f;
 }
@@ -64,6 +64,7 @@ void HP::Draw()
 		DrawRectGraph((int)LEFT_TOP.x, (int)LEFT_TOP.y, 0, 0, (int)(IMAGE_WIDTH * raitio), IMAGE_HEIGHT, hBarRedImage_, TRUE);
 		break;
 	case HP_STATE::HP_DAMAGE:
+		timeRaitio_ = damageTimer_ / DAMAGE_TIME;
 		DrawRectGraph((int)LEFT_TOP.x, (int)LEFT_TOP.y, 0, 0, (int)(IMAGE_WIDTH * (raitio + hpRaitio_ * timeRaitio_)), IMAGE_HEIGHT, hBarRedImage_, TRUE);
 		break;
 	}
@@ -74,12 +75,12 @@ void HP::AddHP(int addHp)
 {
 	addHp_ = std::abs(addHp);
 	hpRaitio_ = (float)std::abs(addHp_) / (float)maxHp_ + hpRaitio_ * timeRaitio_;
-	hp_ += addHp_;
+	hp_ += addHp;
 	if (hp_ > maxHp_) // 最大値より大きくなっていた場合
 	{
 		hp_ = maxHp_;
 	}
-	if (addHp_ > 0)
+	if (addHp > 0)
 	{
 		state_ = HP_STATE::HP_HEAL;
 	}

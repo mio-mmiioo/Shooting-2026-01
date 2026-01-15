@@ -65,7 +65,7 @@ public:
 	bool CollideLine(VECTOR3 pos1, VECTOR3 pos2, VECTOR3* hit = nullptr) const;
 	void SetPosition(VECTOR3 newPosition) { transform_.position_ = newPosition; }
 	void SetMove(VECTOR3 toPosition); // Œ»İ’n‚©‚çtoPosition‚Ì•û‚ÖˆÚ“®‚·‚é
-	void AddHp(int add) { hp_ += add; } // hp‚Éadd‚ğ‰ÁZ
+	virtual void AddHp(int add) { hp_ += add; } // hp‚Éadd‚ğ‰ÁZ
 
 protected:
 	int hModel_; // –{“–‚É•`‰æ‚·‚éƒ‚ƒfƒ‹
