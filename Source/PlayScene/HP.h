@@ -13,9 +13,10 @@ public:
 
 private:
 	enum HP_STATE {
-		HP_NORMAL,	// ’Êí
-		HP_HEAL,	// ‰ñ•œ‚µ‚Ä‚¢‚é
-		HP_DAMAGE,	// UŒ‚‚³‚ê‚Ä‚¢‚é
+		HP_NORMAL,		// ’Êí
+		HP_HEAL,		// ‰ñ•œ‚µ‚Ä‚¢‚é
+		HP_DAMAGING,	// UŒ‚‚³‚ê‚Ä‚¢‚é
+		HP_DAMAGED,		// UŒ‚‚³‚ê‚½
 		HP_MAX_STATE
 	};
 
@@ -23,7 +24,7 @@ private:
 	int hp_;
 	int maxHp_;
 
-	float damageTimer_;
+	float timer_;
 	float hpRaitio_;
 	float timeRaitio_;
 

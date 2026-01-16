@@ -178,7 +178,15 @@ void Player::DevelopmentInput()
 		float r[3] = { t.rotation_.x, t.rotation_.y, t.rotation_.z };
 		ImGui::SliderFloat3("rotation", r, -DX_PI_F, DX_PI_F);
 
+		// HPŠÖ˜A
+		int damage = 2;
+		ImGui::InputInt("Damage Power", &damage);
 		ImGui::Text("HP:%d", HP_->GetHP());
+		if (ImGui::Button("DamagedPlayer"))
+		{
+			
+			HP_->AddHP(-damage);
+		}
 
 		ImGui::End();
 

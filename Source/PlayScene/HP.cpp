@@ -5,7 +5,8 @@ namespace {
 	const VECTOR2 LEFT_TOP = { 20, 20 }; // ¶ã‚ÌÀ•W
 	const int IMAGE_WIDTH = 400; // ‰æ‘œ‚ÌƒTƒCƒY
 	const int IMAGE_HEIGHT = 43;
-	const float DAMAGE_TIME = 1.5f;
+	const float DAMAGING_TIME = 0.4f; // UŒ‚‚³‚ê‚Ä‚¢‚éŽžŠÔ
+	const float DAMAGED_TIME = 2.0f; // UŒ‚‚³‚ê‚½Œã‚ÌŽžŠÔ
 }
 
 HP::HP(int hp)
@@ -22,7 +23,7 @@ HP::HP(int hp)
 	hBarRedImage_ = LoadGraph("data/image/hpBarRed.png");
 	assert(hBarRedImage_ > 0);
 
-	damageTimer_ = 0.0f;
+	timer_ = 0.0f;
 	hpRaitio_ = 0.0f;
 	state_ = HP_STATE::HP_NORMAL;
 }
@@ -40,9 +41,17 @@ void HP::Update()
 	case HP_STATE::HP_HEAL:
 		state_ = HP_STATE::HP_NORMAL;
 		break;
-	case HP_STATE::HP_DAMAGE:
-		damageTimer_ -= Time::DeltaTime();
-		if (damageTimer_ <= 0.0f)
+	case HP_STATE::HP_DAMAGING:
+		timer_ -= Time::DeltaTime();
+		if (timer_ <= 0.0f)
+		{
+			timer_ = DAMAGED_TIME;
+			state_ = HP_STATE::HP_DAMAGED;
+		}
+		break;
+	case HP_STATE::HP_DAMAGED:
+		timer_ -= Time::DeltaTime();
+		if (timer_ <= 0.0f)
 		{
 			addHp_ = 0;
 			hpRaitio_ = 0.0f;
@@ -61,10 +70,11 @@ void HP::Draw()
 	{
 	case HP_STATE::HP_NORMAL:
 	case HP_STATE::HP_HEAL:
-		DrawRectGraph((int)LEFT_TOP.x, (int)LEFT_TOP.y, 0, 0, (int)(IMAGE_WIDTH * raitio), IMAGE_HEIGHT, hBarRedImage_, TRUE);
+	case HP_STATE::HP_DAMAGING:
+		DrawRectGraph((int)LEFT_TOP.x, (int)LEFT_TOP.y, 0, 0, (int)(IMAGE_WIDTH * (raitio + hpRaitio_ * 1.0f)), IMAGE_HEIGHT, hBarRedImage_, TRUE);
 		break;
-	case HP_STATE::HP_DAMAGE:
-		timeRaitio_ = damageTimer_ / DAMAGE_TIME;
+	case HP_STATE::HP_DAMAGED:
+		timeRaitio_ = timer_ / DAMAGED_TIME;
 		DrawRectGraph((int)LEFT_TOP.x, (int)LEFT_TOP.y, 0, 0, (int)(IMAGE_WIDTH * (raitio + hpRaitio_ * timeRaitio_)), IMAGE_HEIGHT, hBarRedImage_, TRUE);
 		break;
 	}
@@ -86,7 +96,7 @@ void HP::AddHP(int addHp)
 	}
 	else if (addHp < 0)
 	{
-		state_ = HP_STATE::HP_DAMAGE;
-		damageTimer_ = DAMAGE_TIME;
+		state_ = HP_STATE::HP_DAMAGING;
+		timer_ = DAMAGING_TIME;
 	}
 }
