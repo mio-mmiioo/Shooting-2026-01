@@ -89,15 +89,12 @@
     <ClCompile Include="Source\MyLibrary\Shadow.cpp">
       <Filter>MyLibrary</Filter>
     </ClCompile>
-    <ClCompile Include="Source\MyLibrary\Observer.cpp" />
-    <ClCompile Include="Source\ResultScene\Result.cpp" />
     <ClCompile Include="Source\PlayScene\Enemy\Enemy.cpp">
       <Filter>PlayScene\Enemy</Filter>
     </ClCompile>
     <ClCompile Include="Source\PlayScene\Enemy\Touhu.cpp">
       <Filter>PlayScene\Enemy</Filter>
     </ClCompile>
-    <ClCompile Include="Source\PlayScene\Enemy\Stone.cpp" />
     <ClCompile Include="Source\PlayScene\Gun.cpp">
       <Filter>PlayScene</Filter>
     </ClCompile>
@@ -105,6 +102,15 @@
       <Filter>PlayScene</Filter>
     </ClCompile>
     <ClCompile Include="Source\MyLibrary\Object2D.cpp">
+      <Filter>MyLibrary</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\PlayScene\Enemy\Stone.cpp">
+      <Filter>PlayScene\Enemy</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\ResultScene\Result.cpp">
+      <Filter>ResultScene</Filter>
+    </ClCompile>
+    <ClCompile Include="Source\MyLibrary\Observer.cpp">
       <Filter>MyLibrary</Filter>
     </ClCompile>
   </ItemGroup>
@@ -213,15 +219,12 @@
     <ClInclude Include="Source\MyLibrary\Shadow.h">
       <Filter>MyLibrary</Filter>
     </ClInclude>
-    <ClInclude Include="Source\MyLibrary\Observer.h" />
-    <ClInclude Include="Source\ResultScene\Result.h" />
     <ClInclude Include="Source\PlayScene\Enemy\Enemy.h">
       <Filter>PlayScene\Enemy</Filter>
     </ClInclude>
     <ClInclude Include="Source\PlayScene\Enemy\Touhu.h">
       <Filter>PlayScene\Enemy</Filter>
     </ClInclude>
-    <ClInclude Include="Source\PlayScene\Enemy\Stone.h" />
     <ClInclude Include="Source\PlayScene\Gun.h">
       <Filter>PlayScene</Filter>
     </ClInclude>
@@ -229,6 +232,15 @@
       <Filter>PlayScene</Filter>
     </ClInclude>
     <ClInclude Include="Source\MyLibrary\Object2D.h">
+      <Filter>MyLibrary</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\PlayScene\Enemy\Stone.h">
+      <Filter>PlayScene\Enemy</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\ResultScene\Result.h">
+      <Filter>ResultScene</Filter>
+    </ClInclude>
+    <ClInclude Include="Source\MyLibrary\Observer.h">
       <Filter>MyLibrary</Filter>
     </ClInclude>
   </ItemGroup>

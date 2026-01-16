@@ -24,6 +24,7 @@ namespace GameMaster
 
 	VECTOR3 playerPosition;
 	bool isCreateEnemy; // “G‚ğì¬‚·‚é‚© true ¨ ì¬‚·‚é
+	bool isDrawWayInfo; // WayInfo‚ğ•`‰æ‚·‚é‚© true ¨ ì¬‚·‚é
 }
 
 void GameMaster::Init()
@@ -67,7 +68,7 @@ void GameMaster::Update()
 
 void GameMaster::Draw()
 {
-	WayInfo::WayDraw();
+	if (isDrawWayInfo == true) WayInfo::WayDraw();
 }
 
 void GameMaster::Release()
@@ -109,6 +110,7 @@ void GameMaster::AttackPlayer(int attackPower)
 void GameMaster::DevelopmentInput()
 {
 	ImGui::Begin("GameMaster");
+	ImGui::Checkbox("Draw WayInfo", &isDrawWayInfo);
 	if (ImGui::Button("CreateEnemy"))
 	{
 		isCreateEnemy = true;
