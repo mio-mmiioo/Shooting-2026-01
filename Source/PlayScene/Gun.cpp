@@ -181,7 +181,7 @@ void Gun::SetGunType(GUN::TYPE type)
 
 int Gun::GetAttack()
 {
-	return current.attak;
+	return current.attack;
 }
 
 float Gun::GetReloadTimer()

@@ -14,7 +14,7 @@ class Gun : public Object3D
 {
 	struct gun {
 		GUN::TYPE type;					// e‚Ìí—Ş
-		int attak;						// UŒ‚—Í
+		int attack;						// UŒ‚—Í
 		int remainingAll;				// c’e”
 		int maxSetting;					// e‚É‘•“U‚Å‚«‚éÅ‘å”
 		int remainingSetting;			// e‚É‘•‚Ä‚ñ‚³‚ê‚Ä‚¢‚éc’e”
