@@ -178,6 +178,7 @@
     <ClInclude Include="Source\ResultScene\ResultScene.h" />
     <ClInclude Include="Source\Screen.h" />
     <ClInclude Include="Source\SceneFactory.h" />
+    <ClInclude Include="Source\Sound.h" />
     <ClInclude Include="Source\TitleScene\TitleScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -218,6 +219,7 @@
     <ClCompile Include="Source\ResultScene\Result.cpp" />
     <ClCompile Include="Source\ResultScene\ResultScene.cpp" />
     <ClCompile Include="Source\SceneFactory.cpp" />
+    <ClCompile Include="Source\Sound.cpp" />
     <ClCompile Include="Source\TitleScene\TitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

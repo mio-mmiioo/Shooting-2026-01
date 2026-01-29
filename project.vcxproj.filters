@@ -113,6 +113,7 @@
     <ClCompile Include="Source\MyLibrary\Observer.cpp">
       <Filter>MyLibrary</Filter>
     </ClCompile>
+    <ClCompile Include="Source\Sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Source\Screen.h" />
@@ -243,6 +244,7 @@
     <ClInclude Include="Source\MyLibrary\Observer.h">
       <Filter>MyLibrary</Filter>
     </ClInclude>
+    <ClInclude Include="Source\Sound.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Library">

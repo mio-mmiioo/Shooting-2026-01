@@ -42,7 +42,7 @@ void GameMaster::Update()
 	player = FindGameObject<Player>();
 	stage = FindGameObject<Stage>();
 
-	if (player->HP_->GetHP() < 0)
+	if (player->HP_->GetHP() <= 0)
 	{
 		SceneManager::ChangeScene("RESULT");
 	}
