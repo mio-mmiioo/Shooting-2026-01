@@ -1,6 +1,7 @@
 #include "Gun.h"
 #include <assert.h>
 #include "../MyLibrary/Color.h"
+#include "../Sound.h"
 
 namespace GUN
 {
@@ -105,16 +106,16 @@ bool Gun::OutBullet()
 	}
 	if (current.remainingSetting <= 0)
 	{
-		//if (CheckSoundMem(Sound::se["CanNotOutBullet"]) == 0)
-		//{
-		//	PlaySoundMem(Sound::se["CanNotOutBullet"], DX_PLAYTYPE_BACK, TRUE);
-		//}
+		if (CheckSoundMem(Sound::se["CanNotOutBullet"]) == 0)
+		{
+			PlaySoundMem(Sound::se["CanNotOutBullet"], DX_PLAYTYPE_BACK, TRUE);
+		}
 		return false;
 	}
 
 	current.remainingSetting -= 1;
 	current.coolDownTimer = current.coolDownTime;
-	//PlaySoundMem(Sound::se["OutBullet1"], DX_PLAYTYPE_BACK, TRUE);
+	PlaySoundMem(Sound::se["OutBullet1"], DX_PLAYTYPE_BACK, TRUE);
 	OutBulletEffect();
 	return true;
 }
@@ -143,7 +144,7 @@ void Gun::ReloadBullet()
 				current.remainingSetting += canSetNum;
 				current.remainingAll -= canSetNum;
 			}
-			//PlaySoundMem(Sound::se["Reload"], DX_PLAYTYPE_BACK, TRUE);
+			PlaySoundMem(Sound::se["Reload"], DX_PLAYTYPE_BACK, TRUE);
 			current.reloadTimer = current.reloadTime; // リロードの時間をセット
 		}
 	}

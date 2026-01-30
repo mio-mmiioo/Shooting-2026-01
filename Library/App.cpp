@@ -3,6 +3,7 @@
 #include "ObjectManager.h"
 #include "Time.h"
 #include "../Source/MyLibrary/Input.h"
+#include "../Source/Sound.h"
 //#include "../Source/MyLibrary/Shadow.h"
 #include <DxLib.h>
 
@@ -12,6 +13,7 @@ void AppInit()
 	SceneManager::Init();
 	Time::Init();
 	Input::InitActionMap();
+	Sound::Init();
 }
 
 void AppUpdate()
