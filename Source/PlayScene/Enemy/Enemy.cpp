@@ -2,6 +2,7 @@
 #include "../../../ImGui/imgui.h"
 #include "../../MyLibrary/Observer.h"
 #include "../../MyLibrary/Object3D.h"
+#include "../../MyLibrary/CsvReader.h"
 #include "../Stage/WayInfo.h"
 #include "../GameMaster.h"
 #include "../Collision.h"
@@ -14,10 +15,15 @@
 namespace Enemy
 {
 	struct E_DATA {
-		float distanceCurrentAndGo;
-		float distanceThisAndPlayer;
+		float gravity;					// 重力
+		float moveSpeed;				// 移動速度
+		float rotateSpeed;				// 回転速度
+		float distanceR;				// 当たり判定の半径
+		float distanceCurrentAndGo;		// 現在地と目的地の距離 この距離より小さい場合、次の目的地を探す
+		float distanceThisAndPlayer;	// 自身とプレイヤーの距離 この距離の範囲内の場合、攻撃状態などになる 
 	};
 
+	void ReadEnemyData();
 	std::string SetCurrentEnemySort(int sortNumber);
 
 	std::map<std::string, E_DATA> data;
@@ -103,6 +109,15 @@ void Enemy::WalkUpdate(int sortNumber, bool* isArrive, VECTOR3* goPosition, VECT
 	if (Collision::CheckDistanceVertexAndVertex(*ePosition, GameMaster::GetPlayerPosition(), data[str].distanceThisAndPlayer))
 	{
 		*state = nextState;
+	}
+}
+
+void Enemy::ReadEnemyData()
+{
+	CsvReader* csv = new CsvReader("data/enemy.csv");
+	for (int line = 0; line < csv->GetLines(); line++)
+	{
+		int sortNumber = csv->GetInt(line, 0);
 	}
 }
 
