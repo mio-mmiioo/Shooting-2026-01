@@ -8,19 +8,24 @@
 #include "../Collision.h"
 #include <assert.h>
 #include <map>
+#include <string>
 // 各敵のヘッダーファイル
 #include "Stone.h"
 #include "Touhu.h"
 
 namespace Enemy
 {
-	struct E_DATA {
-		float gravity;					// 重力
-		float moveSpeed;				// 移動速度
-		float rotateSpeed;				// 回転速度
-		float distanceR;				// 当たり判定の半径
-		float distanceCurrentAndGo;		// 現在地と目的地の距離 この距離より小さい場合、次の目的地を探す
-		float distanceThisAndPlayer;	// 自身とプレイヤーの距離 この距離の範囲内の場合、攻撃状態などになる 
+	// csvに書かれているデータ
+	enum E_DATA_NUM {
+		NAME,			// 名前
+		SORT,			// 種類
+		GRAVITY,		// 重力
+		MOVE_SPEED,		// 移動速度
+		ROTATE_SPEED,	// 回転速度
+		DISTANCE_R,		// 当たり判定の半径
+		DISTANCE1,		// 現在地と目的地の距離
+		DISTANCE2,		// 自身とプレイヤーの距離
+		MAX_E_DATA_NUM
 	};
 
 	void ReadEnemyData();
@@ -31,8 +36,16 @@ namespace Enemy
 
 void Enemy::Init()
 {
-	data["STONE"] = { 20.0f, 200.0f };
-	data["TOUHU"] = { 20.0f, 200.0f };
+	ReadEnemyData();
+}
+
+void Enemy::SetEnemyData(std::string name, float* gravity, float* moveSpeed, float* rotateSpeed, float* distanceR)
+{
+	E_DATA d = data[name];
+	*gravity = d.gravity;
+	*moveSpeed = d.moveSpeed;
+	*rotateSpeed = d.rotateSpeed;
+	*distanceR = d.distanceR;
 }
 
 void Enemy::DevelopmentInput(Transform& t)
@@ -91,7 +104,7 @@ void Enemy::StayUpdate(int sortNumber, VECTOR3 ePosition, E_STATE* state, E_STAT
 // プレイヤーまでを最短経路で移動する
 void Enemy::WalkUpdate(int sortNumber, bool* isArrive, VECTOR3* goPosition, VECTOR3* ePosition, E_STATE* state, E_STATE nextState)
 {
-	std::string str = SetCurrentEnemySort(sortNumber);
+	std::string name = SetCurrentEnemySort(sortNumber);
 
 	if (*isArrive == true)
 	{
@@ -100,13 +113,13 @@ void Enemy::WalkUpdate(int sortNumber, bool* isArrive, VECTOR3* goPosition, VECT
 	}
 	else
 	{
-		if (Collision::CheckDistanceVertexAndVertex(*ePosition, *goPosition, data[str].distanceCurrentAndGo) == true)
+		if (Collision::CheckDistanceVertexAndVertex(*ePosition, *goPosition, data[name].distanceCurrentAndGo) == true)
 		{
 			*isArrive = true;
 		}
 	}
 
-	if (Collision::CheckDistanceVertexAndVertex(*ePosition, GameMaster::GetPlayerPosition(), data[str].distanceThisAndPlayer))
+	if (Collision::CheckDistanceVertexAndVertex(*ePosition, GameMaster::GetPlayerPosition(), data[name].distanceThisAndPlayer))
 	{
 		*state = nextState;
 	}
@@ -115,9 +128,19 @@ void Enemy::WalkUpdate(int sortNumber, bool* isArrive, VECTOR3* goPosition, VECT
 void Enemy::ReadEnemyData()
 {
 	CsvReader* csv = new CsvReader("data/enemy.csv");
-	for (int line = 0; line < csv->GetLines(); line++)
+	for (int line = 1; line < csv->GetLines(); line++)
 	{
-		int sortNumber = csv->GetInt(line, 0);
+		std::string name = csv->GetString(line, E_DATA_NUM::NAME);
+		int sortNumber = csv->GetInt(line, E_DATA_NUM::SORT);
+		E_DATA enemy;
+		enemy.gravity = csv->GetFloat(line, E_DATA_NUM::GRAVITY);
+		enemy.moveSpeed = csv->GetFloat(line, E_DATA_NUM::MOVE_SPEED);
+		enemy.rotateSpeed = csv->GetFloat(line, E_DATA_NUM::ROTATE_SPEED);
+		enemy.distanceR = csv->GetFloat(line, E_DATA_NUM::DISTANCE_R);
+		enemy.distanceCurrentAndGo = csv->GetFloat(line, E_DATA_NUM::DISTANCE1);
+		enemy.distanceThisAndPlayer = csv->GetFloat(line, E_DATA_NUM::DISTANCE2);
+		
+		data[name] = enemy;
 	}
 }
 
@@ -127,10 +150,10 @@ std::string Enemy::SetCurrentEnemySort(int sortNumber)
 	switch (sortNumber)
 	{
 	case E_SORT::STONE:
-		ret = "STONE";
+		ret = "stone";
 		break;
 	case E_SORT::TOUHU:
-		ret = "TOUHU";
+		ret = "touhu";
 		break;
 	}
 	return ret;

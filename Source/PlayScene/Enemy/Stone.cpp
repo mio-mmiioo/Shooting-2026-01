@@ -8,12 +8,6 @@
 
 namespace STONE
 {
-	const float G = 0.05f;
-
-	const float MOVE_SPEED = 3.0f;
-	const float ROTATE_SPEED = 3.0f;
-	const float DISTANCE_R = 50.0f;
-
 	VECTOR3 headshotPos = { 0.0f, 170.0f, 0.0f };
 	float headshotR = 25.0f;
 	int headshotBonus = 2;
@@ -39,19 +33,13 @@ Stone::Stone(const std::string& fileName, const Transform& t, int hp, int score)
 	transform_ = t;
 	hp_ = hp;
 	score_ = score;
-
 	time_ = 0.0f;
-	gravity_ = STONE::G;
-	distanceR_ = STONE::DISTANCE_R;
-
 
 	transform_.MakeLocalMatrix();
 	MV1SetMatrix(hitModel_, transform_.GetLocalMatrix());
 	MV1SetupCollInfo(hitModel_);
 
-	rotateSpeed_ = STONE::ROTATE_SPEED;
-	moveSpeed_ = STONE::MOVE_SPEED;
-
+	Enemy::SetEnemyData("stone", &gravity_, &moveSpeed_, &rotateSpeed_, &distanceR_);
 	Collision::AddObject(this);
 
 	objectNumber_ = OBJECT_SORT::OBJ_CHARA;
